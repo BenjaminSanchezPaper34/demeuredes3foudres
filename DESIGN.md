@@ -47,8 +47,8 @@ Contrastes vérifiés : Chêne/Pierre 15:1 · Taupe/Pierre 6,3:1 · Lie/Pierre 7
 ## 2. Typographie
 
 - **Fonctionnelle — Switzer** (Fontshare, kit offline auto-hébergé). Grotesque neutre mais tiède, sans la froideur d'Inter. Corps, nav, UI, tableaux de tarifs. Poids 400 / 500 / 600.
-  *Licence à vérifier avant build : Fontshare est libre en usage commercial, à confirmer police par police et à noter ici avec la date.*
-- **Display — Fraunces** (Google, auto-hébergée via `next/font`, variable). Droit d'apparaître **uniquement** : H1 du hero, titres de section, nom des trois logements, chiffres des tarifs. Jamais dans un paragraphe, jamais dans la nav, jamais dans un bouton.
+  **Licence vérifiée le 10/09/2026** : ITF Free Font License, usage commercial libre et illimité, auto-hébergement explicitement autorisé et recommandé (« Self-hosting by end users is permitted and recommended »). Fichier `Switzer-Variable.woff2` versionné dans `src/app/fonts/`.
+- **Display — Fraunces** (Google, SIL Open Font License, auto-hébergée par `next/font` — aucun appel à fonts.googleapis.com au runtime). Droit d'apparaître **uniquement** : H1 du hero, titres de section, nom des trois logements, chiffres des tarifs. Jamais dans un paragraphe, jamais dans la nav, jamais dans un bouton.
   L'axe `WONK` est poussé légèrement (12 sur 100) sur les seuls H1 : c'est ce qui traduit « décoration soignée et **atypique** » sans tomber dans le serif d'hôtel générique. Le reste du site tient l'axe à 0.
 - Tailles : corps `text-base` (16px) minimum, `text-lg` sur les textes de présentation des logements — ce sont des textes qu'on lit vraiment, ils méritent de l'air. `text-sm` plancher pour les légendes. `text-xs` réservé au copyright.
 - Grands titres en `clamp()`. Interlignage large sur le courant (1.7) : le ton des textes des propriétaires est celui d'une lettre, pas d'une fiche produit.
