@@ -150,7 +150,7 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
                 return (
                   <tr key={l.id} className="border-b border-sauge/30">
                     <td className="py-5 pr-4">
-                      <a href={urlLogement(l.id, lang)} className="lien font-display text-xl">
+                      <a href={urlLogement(l.id, lang)} className="lien inline-flex min-h-11 items-center font-display text-xl">
                         {l.nom[lang]}
                       </a>
                       <span className="mt-1 block text-sm text-taupe">{l.surface} m²</span>

@@ -19,8 +19,8 @@ export default function Pied({ lang }: { lang: Lang }) {
             <p className="font-display text-2xl">{SITE.nom}</p>
             <p className="mt-3 text-base leading-relaxed text-pierre/70">{SITE.baseline[lang]}</p>
 
-            <address className="mt-6 space-y-3 not-italic">
-              <LienItineraire className="flex items-start gap-3 text-base text-pierre/85 transition-colors hover:text-white">
+            <address className="mt-5 not-italic">
+              <LienItineraire className="flex min-h-11 items-start gap-3 py-1 text-base text-pierre/85 transition-colors hover:text-white">
                 <MapPin size={18} className="mt-0.5 shrink-0 text-sauge" />
                 <span>
                   {SITE.adresse.rue}
@@ -30,14 +30,14 @@ export default function Pied({ lang }: { lang: Lang }) {
               </LienItineraire>
               <LienTelephone
                 depuis="pied"
-                className="flex items-center gap-3 text-base text-pierre/85 transition-colors hover:text-white"
+                className="flex min-h-11 items-center gap-3 py-1 text-base text-pierre/85 transition-colors hover:text-white"
               >
                 <Phone size={18} className="shrink-0 text-sauge" />
                 {SITE.telephoneAffiche}
               </LienTelephone>
               <a
                 href={`mailto:${SITE.email}`}
-                className="flex items-center gap-3 text-base text-pierre/85 transition-colors hover:text-white"
+                className="flex min-h-11 items-center gap-3 py-1 text-base text-pierre/85 transition-colors hover:text-white"
               >
                 <Mail size={18} className="shrink-0 text-sauge" />
                 {SITE.email}
@@ -49,12 +49,12 @@ export default function Pied({ lang }: { lang: Lang }) {
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-sauge">
               {lang === "fr" ? "Le séjour" : "Your stay"}
             </p>
-            <ul className="space-y-2.5">
+            <ul className="-my-1">
               {NAV.map((cle) => (
                 <li key={cle}>
                   <Link
                     href={route(cle, lang)}
-                    className="text-base text-pierre/75 transition-colors hover:text-white"
+                    className="block py-2.5 text-base text-pierre/75 transition-colors hover:text-white"
                   >
                     {LIBELLES[cle][lang]}
                   </Link>
@@ -67,12 +67,12 @@ export default function Pied({ lang }: { lang: Lang }) {
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-sauge">
               {lang === "fr" ? "Informations" : "Information"}
             </p>
-            <ul className="space-y-2.5">
+            <ul className="-my-1">
               {NAV_PIED.map((cle) => (
                 <li key={cle}>
                   <Link
                     href={route(cle, lang)}
-                    className="text-base text-pierre/75 transition-colors hover:text-white"
+                    className="block py-2.5 text-base text-pierre/75 transition-colors hover:text-white"
                   >
                     {LIBELLES[cle][lang]}
                   </Link>
@@ -83,7 +83,7 @@ export default function Pied({ lang }: { lang: Lang }) {
                   href={SITE.boutique}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-base text-pierre/75 transition-colors hover:text-white"
+                  className="block py-2.5 text-base text-pierre/75 transition-colors hover:text-white"
                 >
                   {lang === "fr" ? "La boutique" : "The shop"}
                 </a>
@@ -118,10 +118,10 @@ export default function Pied({ lang }: { lang: Lang }) {
             © {new Date().getFullYear()} {SITE.nom}
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link href={route("mentionsLegales", lang)} className="transition-colors hover:text-pierre">
+            <Link href={route("mentionsLegales", lang)} className="inline-flex min-h-11 items-center transition-colors hover:text-pierre">
               {LIBELLES.mentionsLegales[lang]}
             </Link>
-            <Link href={route("confidentialite", lang)} className="transition-colors hover:text-pierre">
+            <Link href={route("confidentialite", lang)} className="inline-flex min-h-11 items-center transition-colors hover:text-pierre">
               {LIBELLES.confidentialite[lang]}
             </Link>
             <PaperSignature />
