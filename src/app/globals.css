@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Switzer — auto-hébergée (Fontshare, ITF Free Font License).
+   Licence vérifiée le 10/09/2026 : usage commercial libre, self-hosting
+   explicitement autorisé. Aucun CDN de polices tiers (CNIL).
+   Fraunces est auto-hébergée par next/font (voir layout.tsx).
+------------------------------------------------------------------ */
+@font-face {
+  font-family: "Switzer";
+  src: url("./fonts/Switzer-Variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ------------------------------------------------------------------
+   Tokens — cf. DESIGN.md §1. La palette est relevée sur les photos
+   du lieu, pas choisie sur une roue chromatique.
+------------------------------------------------------------------ */
+@theme {
+  /* Fonds */
+  --color-pierre: #efe9de;   /* enduit à la chaux de la façade — fond de page */
+  --color-chaux: #f8f4ed;    /* fond alterné, écart volontairement ténu */
+  --color-ardoise: #2a2926;  /* lauzes et poutres noircies — la vraie rupture */
+
+  /* Texte */
+  --color-chene: #241c15;    /* brun très sombre, jamais #000 */
+  --color-taupe: #5f584d;    /* texte secondaire, légendes */
+
+  /* Matière */
+  --color-sauge: #8a9179;    /* volets de la façade — filets et survols UNIQUEMENT */
+
+  /* Décision */
+  --color-lie: #6e2b2b;      /* trappe des cuves — l'unique décision chromatique */
+  --color-lie-clair: #8a3a37; /* survol du CTA seulement */
+
+  --font-sans: "Switzer", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--police-display), Georgia, serif;
+
+  --radius-fin: 2px;
+  --radius-bloc: 3px;
+
+  --shadow-pose: 0 1px 2px rgb(36 28 21 / 0.06);
+  --shadow-leve: 0 12px 32px rgb(36 28 21 / 0.1);
+
+  --ease-feutre: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ------------------------------------------------------------------ base */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-pierre);
+    color: var(--color-chene);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection {
+    background: var(--color-lie);
+    color: var(--color-pierre);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-lie);
+    outline-offset: 3px;
+  }
+  /* Les sections sombres inversent le focus, l'accent y étant illisible. */
+  .sur-ardoise :focus-visible { outline-color: var(--color-pierre); }
+}
+
+@layer utilities {
+  /* Colonne de texte courant : 62ch, cf. DESIGN.md §3 */
+  .mesure { max-width: 62ch; }
+
+  /* Grain : UNIQUEMENT sur les aplats Ardoise, pour leur donner la matière
+     d'un enduit. Jamais sur les fonds clairs. */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Lien de texte : soulignement animé de gauche à droite. */
+  .lien {
+    background-image: linear-gradient(var(--color-lie), var(--color-lie));
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s var(--ease-feutre);
+  }
+  .lien:hover { background-size: 100% 1px; }
+}
+
+/* État initial des reveals GSAP : posé en CSS pour éviter le flash
+   au premier rendu. Neutralisé si l'utilisateur refuse le mouvement. */
+[data-reveal] { opacity: 0; transform: translateY(32px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Effet signature — l'ouverture des volets (DESIGN.md §4).
+   La photo est peinte en dessous : les panneaux ne retardent pas le LCP,
+   ils se retirent par-dessus. Pur CSS, aucune dépendance à l'hydratation.
+------------------------------------------------------------------ */
+@keyframes volet-gauche {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-101%); }
+}
+@keyframes volet-droit {
+  from { transform: translateX(0); }
+  to   { transform: translateX(101%); }
+}
+.volet {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  background: var(--color-ardoise);
+  pointer-events: none;
+  will-change: transform;
+  animation-duration: 1.15s;
+  animation-timing-function: var(--ease-feutre);
+  animation-delay: 0.15s;
+  animation-fill-mode: both;
+}
+.volet-gauche { left: 0; animation-name: volet-gauche; }
+.volet-droit  { right: 0; animation-name: volet-droit; }
+
+@keyframes fleche-scroll {
+  0%, 100% { transform: translateY(0); opacity: 0.65; }
+  50%      { transform: translateY(7px); opacity: 1; }
+}
+.fleche-scroll { animation: fleche-scroll 2.2s var(--ease-feutre) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .volet { display: none; }
+  .fleche-scroll { animation: none; }
+}
