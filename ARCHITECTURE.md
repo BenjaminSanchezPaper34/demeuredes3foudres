@@ -45,7 +45,7 @@ Ce qui est bon et se garde : les textes de présentation de la demeure et des 3 
 ```
 /                             Accueil                        /en/
 /la-demeure                   Histoire, rénovation, petit-déj /en/the-house
-/chambres                     Les 3 hébergements (hub)        /en/rooms
+/chambres                     Les 3 hébergements (hub) + configurateur   /en/rooms
   /chambres/l-ecurie          Chambre 35 m², 2 pers.          /en/rooms/the-stable
   /chambres/la-lingerie       Chambre 24 m², 2 pers.          /en/rooms/the-linen-room
   /chambres/le-grenier        Appartement 70 m², 4 pers.      /en/rooms/the-attic
