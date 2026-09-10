@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import "@/lib/verrou";
 
 /**
  * Smooth scroll global. Deux garde-fous :
@@ -9,12 +10,6 @@ import Lenis from "lenis";
  * — coupé au doigt (pointer coarse), où le scroll natif est meilleur.
  * L'instance est exposée pour que les overlays puissent stopper le fond.
  */
-declare global {
-  interface Window {
-    __lenis?: Lenis;
-  }
-}
-
 export default function SmoothScroll() {
   useEffect(() => {
     const refuse = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -39,12 +34,4 @@ export default function SmoothScroll() {
   }, []);
 
   return null;
-}
-
-/** Bloque/relâche le scroll du fond quand une modale ou un menu s'ouvre. */
-export function verrouScroll(actif: boolean) {
-  if (typeof window === "undefined") return;
-  document.body.style.overflow = actif ? "hidden" : "";
-  if (actif) window.__lenis?.stop();
-  else window.__lenis?.start();
 }

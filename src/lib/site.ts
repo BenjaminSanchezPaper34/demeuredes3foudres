@@ -34,6 +34,9 @@ export const SITE = {
   ],
   /** Avis réels au 10/09/2026. À réactualiser à chaque revue mensuelle. */
   avis: { note: 4.9, nombre: 19, source: "Google" },
+  /** Booking.com Traveller Review Awards 2023 — repris en texte, jamais avec le logo :
+   *  la marque Booking n'a pas sa place sur un site dont l'argument est de s'en passer. */
+  avisBooking: { note: 9.7, sur: 10, annee: 2023 },
   boutique: "https://www.lefagoteur.com/collections/demeure-des-trois-foudres",
 } as const;
 

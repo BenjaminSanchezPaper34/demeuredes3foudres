@@ -3,8 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import type { Lang } from "@/lib/site";
 import Nav from "./Nav";
 import Pied from "./Pied";
-import SmoothScroll from "./SmoothScroll";
-import Reveal from "./Reveal";
+import Cinetique from "./Cinetique";
 import { FournisseurReservation } from "./Reservation";
 import BarreReservation from "./BarreReservation";
 
@@ -16,8 +15,7 @@ import BarreReservation from "./BarreReservation";
 export default function Coque({ lang, children }: { lang: Lang; children: ReactNode }) {
   return (
     <FournisseurReservation lang={lang}>
-      <SmoothScroll />
-      <Reveal />
+      <Cinetique />
       <Nav lang={lang} />
       <main id="contenu">{children}</main>
       <Pied lang={lang} />

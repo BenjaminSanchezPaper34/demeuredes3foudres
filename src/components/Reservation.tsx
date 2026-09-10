@@ -6,8 +6,9 @@ import { Icone } from "./Icone";
 import { track } from "@vercel/analytics";
 import { SITE, type Lang } from "@/lib/site";
 import { UI } from "@/content/ui";
-import { verrouScroll } from "./SmoothScroll";
-import { BoutonAction } from "./Bouton";
+import { verrouScroll } from "@/lib/verrou";
+import { Bouton } from "./Bouton";
+import { route } from "@/lib/routes";
 
 /**
  * Moteur de réservation Smoobu.
@@ -53,6 +54,16 @@ export function FournisseurReservation({
     setOuvert(true);
     track("reservation_ouverte", { logement: smoobuId ?? "tous" });
   }, []);
+
+  // Un clic sur un CTA avant l'hydratation a mené à /reserver?ouvrir=… :
+  // on tient la promesse en ouvrant le tiroir dès qu'on a la main.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    if (!q.has("ouvrir")) return;
+    const id = Number(q.get("ouvrir"));
+    ouvrir(Number.isFinite(id) && id > 0 ? id : null);
+    window.history.replaceState(null, "", window.location.pathname);
+  }, [ouvrir]);
 
   useEffect(() => {
     verrouScroll(ouvert);
@@ -231,15 +242,21 @@ export function BoutonReserver({
   pleineLargeur?: boolean;
 }) {
   const { ouvrir } = useReservation();
+  // Vrai lien : avant l'hydratation (ou sans JavaScript), il mène à la page
+  // de réservation. Une fois React en place, le clic ouvre le tiroir.
   return (
-    <BoutonAction
+    <Bouton
+      href={`${route("reserver", lang)}?ouvrir=${smoobuId ?? 1}`}
       variante={variante}
       className={className}
       fleche={fleche}
       pleineLargeur={pleineLargeur}
-      onClick={() => ouvrir(smoobuId)}
+      onClick={(e) => {
+        e.preventDefault();
+        ouvrir(smoobuId);
+      }}
     >
       {libelle ?? UI.voirDisponibilites[lang]}
-    </BoutonAction>
+    </Bouton>
   );
 }

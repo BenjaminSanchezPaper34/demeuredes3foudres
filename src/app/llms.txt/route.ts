@@ -31,7 +31,7 @@ export function GET() {
 - Email : ${SITE.email}
 - Site : ${SITE.url}
 - Coordonnées GPS : ${SITE.geo.lat}, ${SITE.geo.lng}
-- Avis : ${SITE.avis.note}/5 sur ${SITE.avis.nombre} avis Google
+- Avis : ${SITE.avis.note}/5 sur ${SITE.avis.nombre} avis Google · ${SITE.avisBooking.note}/${SITE.avisBooking.sur} sur Booking.com (Traveller Review Awards ${SITE.avisBooking.annee})
 
 ## Les logements
 

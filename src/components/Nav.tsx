@@ -7,12 +7,13 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { track } from "@vercel/analytics";
 import { SITE, type Lang } from "@/lib/site";
-import { NAV, equivalent, route } from "@/lib/routes";
+import { NAV, route } from "@/lib/routes";
 import { LIBELLES, UI } from "@/content/ui";
-import { verrouScroll } from "./SmoothScroll";
+import { verrouScroll } from "@/lib/verrou";
 import { BoutonReserver } from "./Reservation";
 import { Icone } from "./Icone";
 import Marque from "./Marque";
+import SelecteurLangue from "./SelecteurLangue";
 
 /**
  * Navigation fixe.
@@ -38,9 +39,6 @@ export default function Nav({ lang }: { lang: Lang }) {
   useEffect(() => verrouScroll(menu), [menu]);
 
   const actif = (href: string) => chemin === href || chemin.startsWith(href + "/");
-  const autreLangue = lang === "fr" ? "en" : "fr";
-  // On reste sur la même page en changeant de langue, pas de retour à l'accueil.
-  const versAutreLangue = equivalent(chemin, autreLangue);
   const encre = defile ? "text-chene" : "text-pierre";
 
   return (
@@ -83,16 +81,7 @@ export default function Nav({ lang }: { lang: Lang }) {
                 </Link>
               );
             })}
-            <Link
-              href={versAutreLangue}
-              hrefLang={autreLangue}
-              className={`flex items-center gap-1.5 text-sm uppercase tracking-widest transition-colors hover:text-lie ${
-                defile ? "text-taupe" : "text-pierre/80"
-              }`}
-            >
-              <Icone nom="langue" taille={16} />
-              {UI.langue[lang]}
-            </Link>
+            <SelecteurLangue lang={lang} sombre={!defile} />
             <BoutonReserver lang={lang} variante={defile ? "plein" : "clair"} />
           </nav>
 
@@ -161,14 +150,7 @@ export default function Nav({ lang }: { lang: Lang }) {
               })}
 
               <div className="mt-5 flex items-center justify-between">
-                <Link
-                  href={versAutreLangue}
-                  hrefLang={autreLangue}
-                  className="flex min-h-11 items-center gap-2 text-sm uppercase tracking-widest text-sauge"
-                >
-                  <Icone nom="langue" taille={16} />
-                  {UI.langue[lang]}
-                </Link>
+                <SelecteurLangue lang={lang} sombre />
                 <a
                   href={`tel:${SITE.telephone}`}
                   onClick={() => track("tel", { depuis: "menu" })}

@@ -11,6 +11,8 @@ import { UI } from "@/content/ui";
  */
 export function NoteGoogle({ lang, sombre }: { lang: Lang; sombre?: boolean }) {
   const { note, nombre } = SITE.avis;
+  const b = SITE.avisBooking;
+  const loc = lang === "fr" ? "fr-FR" : "en-GB";
   return (
     <div className="flex flex-wrap items-center gap-x-3 gap-y-1" data-reveal>
       <span
@@ -33,6 +35,15 @@ export function NoteGoogle({ lang, sombre }: { lang: Lang; sombre?: boolean }) {
           {lang === "fr" ? `Note de ${note} sur 5` : `Rated ${note} out of 5`} —{" "}
         </span>
         {nombre} {UI.avis[lang]} {UI.avisGoogle[lang]}
+      </span>
+      <span aria-hidden className={`hidden sm:inline ${sombre ? "text-pierre/40" : "text-sauge"}`}>·</span>
+      <span className={`text-base ${sombre ? "text-pierre/75" : "text-taupe"}`}>
+        <span className={`font-display text-lg ${sombre ? "text-pierre" : "text-chene"}`}>
+          {b.note.toLocaleString(loc)}/{b.sur}
+        </span>{" "}
+        {lang === "fr"
+          ? `sur Booking.com · Traveller Review Awards ${b.annee}`
+          : `on Booking.com · Traveller Review Awards ${b.annee}`}
       </span>
     </div>
   );

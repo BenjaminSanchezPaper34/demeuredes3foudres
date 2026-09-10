@@ -7,7 +7,7 @@ import { Icone } from "./Icone";
 import type { Lang } from "@/lib/site";
 import { UI } from "@/content/ui";
 import type { Photo } from "@/content/logements";
-import { verrouScroll } from "./SmoothScroll";
+import { verrouScroll } from "@/lib/verrou";
 
 /**
  * Galerie photo. Pas de carrousel automatique (DESIGN.md §5) : rien ne défile
@@ -40,8 +40,12 @@ export default function Galerie({ photos, lang }: { photos: Photo[]; lang: Lang 
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4" data-reveal="stagger">
         {photos.map((p, i) => (
           <li key={p.src}>
-            <button
-              onClick={() => setIndex(i)}
+            <a
+              href={p.src}
+              onClick={(e) => {
+                e.preventDefault();
+                setIndex(i);
+              }}
               className="group relative block aspect-[4/3] w-full overflow-hidden bg-chaux"
               aria-label={p.alt[lang]}
             >
@@ -52,7 +56,7 @@ export default function Galerie({ photos, lang }: { photos: Photo[]; lang: Lang 
                 sizes="(max-width: 768px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 ease-[var(--ease-feutre)] group-hover:scale-[1.04]"
               />
-            </button>
+            </a>
           </li>
         ))}
       </ul>
