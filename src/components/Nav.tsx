@@ -81,8 +81,8 @@ export default function Nav({ lang }: { lang: Lang }) {
                 </Link>
               );
             })}
-            <SelecteurLangue lang={lang} sombre={!defile} />
             <BoutonReserver lang={lang} variante={defile ? "plein" : "clair"} />
+            <SelecteurLangue lang={lang} sombre={!defile} />
           </nav>
 
           <div className="ml-auto flex items-center gap-1 lg:hidden">

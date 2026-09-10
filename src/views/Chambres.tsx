@@ -3,7 +3,8 @@ import { route } from "@/lib/routes";
 import { LOGEMENTS } from "@/content/logements";
 import { LIBELLES, UI } from "@/content/ui";
 import Hero from "@/components/Hero";
-import { Section, Titre, Essentiel } from "@/components/Bloc";
+import { Section, Titre } from "@/components/Bloc";
+import Configurateur from "@/components/Configurateur";
 import CarteLogement from "@/components/CarteLogement";
 import { BoutonReserver } from "@/components/Reservation";
 import { PrixDirect } from "@/components/Reassurance";
@@ -41,23 +42,10 @@ export default function Chambres({ lang }: { lang: Lang }) {
         }
       />
 
-      <Section fond="chaux" classe="!py-14">
-        <Essentiel
-          lang={lang}
-          items={
-            lang === "fr"
-              ? [
-                  "L'Écurie — 35 m², 2 personnes, de plain-pied, avec baignoire et terrasse privative.",
-                  "La Lingerie — 24 m², 2 personnes, ambiance 1900, à deux pas du couloir de nage.",
-                  "Le Grenier — appartement de 70 m², 4 personnes, deux chambres et cuisine équipée.",
-                ]
-              : [
-                  "The Stable — 35 m², 2 guests, ground floor, with a bathtub and private terrace.",
-                  "The Linen Room — 24 m², 2 guests, 1900s feel, steps from the swimming lane.",
-                  "The Attic — 70 m² apartment, 4 guests, two bedrooms and a fitted kitchen.",
-                ]
-          }
-        />
+      {/* Sous la photo : le configurateur. L'encadré « L'essentiel » répétait
+          les trois cartes qui suivent — il a été remplacé, pas déplacé. */}
+      <Section fond="chaux">
+        <Configurateur lang={lang} />
       </Section>
 
       <Section>
