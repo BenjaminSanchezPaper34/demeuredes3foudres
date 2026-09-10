@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 declare global {
   interface Window {
-    /** Posé par le script en ligne du <head> : désamorce le filet de sécurité. */
+    /** Posé par le script d'amorce du <head> : désamorce le filet de sécurité. */
     __revealPret?: () => void;
   }
 }
@@ -16,6 +16,11 @@ declare global {
  * Tout élément portant `data-reveal` est révélé : fade + translateY(32px).
  * `data-reveal="stagger"` sur un parent décale ses enfants directs de 0,12 s.
  *
+ * L'état masqué initial vient du CSS (classe `anime`), jamais d'un `gsap.set` :
+ * un style en ligne survivrait au filet de sécurité du <head> et laisserait le
+ * contenu invisible si le ticker ne tournait pas. GSAP ne fait qu'animer VERS
+ * l'état visible.
+ *
  * Un seul moteur, un seul ScrollTrigger par élément — cf. DESIGN.md §4.
  */
 export default function Reveal() {
@@ -23,13 +28,9 @@ export default function Reveal() {
     const racine = document.documentElement;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // Rien n'est animé : on rend simplement le contenu visible.
       racine.classList.remove("anime");
       return;
     }
-
-    // Coupe le filet de sécurité posé par le script en ligne du <head>.
-    window.__revealPret?.();
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -37,10 +38,7 @@ export default function Reveal() {
       document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
         const groupe = el.dataset.reveal === "stagger";
         const cibles = groupe ? Array.from(el.children) : [el];
-
-        // Un parent « stagger » ne s'anime pas lui-même : seuls ses enfants bougent.
-        if (groupe) gsap.set(el, { opacity: 1, y: 0 });
-        gsap.set(cibles, { opacity: 0, y: 32 });
+        if (!cibles.length) return;
 
         gsap.to(cibles, {
           opacity: 1,
@@ -52,6 +50,9 @@ export default function Reveal() {
         });
       });
     });
+
+    // GSAP a la main : le filet de sécurité peut être désamorcé.
+    window.__revealPret?.();
 
     // Les images se chargeant après coup, les positions changent.
     const rafraichir = () => ScrollTrigger.refresh();

@@ -112,10 +112,15 @@
    Ce même script retire la classe au bout de 2,5 s si GSAP n'a pas pris
    la main — un CDN qui tombe ne doit pas laisser une page blanche. */
 .anime [data-reveal] { opacity: 0; transform: translateY(32px); }
+/* Un parent « stagger » ne s'anime pas lui-même : ce sont ses enfants
+   directs qui sont masqués, puis révélés en cascade. */
+.anime [data-reveal="stagger"] { opacity: 1; transform: none; }
+.anime [data-reveal="stagger"] > * { opacity: 0; transform: translateY(32px); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .anime [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .anime [data-reveal],
+  .anime [data-reveal="stagger"] > * { opacity: 1 !important; transform: none !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
