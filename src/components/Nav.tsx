@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, Phone } from "lucide-react";
 import { track } from "@vercel/analytics";
 import { SITE, type Lang } from "@/lib/site";
-import { NAV, ROUTES, route } from "@/lib/routes";
+import { NAV, equivalent, route } from "@/lib/routes";
 import { LIBELLES, UI } from "@/content/ui";
 import { verrouScroll } from "./SmoothScroll";
 import { BoutonReserver } from "./Reservation";
@@ -34,6 +34,8 @@ export default function Nav({ lang }: { lang: Lang }) {
 
   const actif = (href: string) => chemin === href || chemin.startsWith(href + "/");
   const autreLangue = lang === "fr" ? "en" : "fr";
+  // On reste sur la même page en changeant de langue, pas de retour à l'accueil.
+  const versAutreLangue = equivalent(chemin, autreLangue);
 
   return (
     <>
@@ -75,7 +77,7 @@ export default function Nav({ lang }: { lang: Lang }) {
               );
             })}
             <Link
-              href={ROUTES.accueil[autreLangue] === "/" ? "/" : ROUTES.accueil[autreLangue]}
+              href={versAutreLangue}
               hrefLang={autreLangue}
               className={`text-sm uppercase tracking-widest transition-colors hover:text-lie ${
                 defile ? "text-taupe" : "text-pierre/80"
@@ -140,7 +142,7 @@ export default function Nav({ lang }: { lang: Lang }) {
                 </Link>
               ))}
               <Link
-                href={ROUTES.accueil[autreLangue]}
+                href={versAutreLangue}
                 hrefLang={autreLangue}
                 className="py-4 text-sm uppercase tracking-widest text-sauge"
               >

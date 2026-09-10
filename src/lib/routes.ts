@@ -64,3 +64,29 @@ export const NAV: RouteKey[] = [
 
 /** Liens du pied de page, en deux colonnes. */
 export const NAV_PIED: RouteKey[] = ["acces", "environs", "contact"];
+
+/**
+ * Chemin équivalent dans l'autre langue.
+ *
+ * Changer de langue depuis /chambres doit mener à /en/rooms, pas à l'accueil :
+ * sinon le visiteur perd sa page, et le lien contredit les hreflang qu'on
+ * déclare par ailleurs. Repli sur l'accueil si le chemin est inconnu.
+ */
+export function equivalent(chemin: string, cible: Lang): string {
+  const source: Lang = cible === "fr" ? "en" : "fr";
+  const propre = chemin.replace(/\/+$/, "") || "/";
+
+  const cle = (Object.keys(ROUTES) as RouteKey[]).find(
+    (k) => ROUTES[k][source] === propre,
+  );
+  if (cle) return ROUTES[cle][cible];
+
+  const prefixe = `${ROUTES.chambres[source]}/`;
+  if (propre.startsWith(prefixe)) {
+    const slug = propre.slice(prefixe.length);
+    const entree = Object.values(LOGEMENT_SLUGS).find((s) => s[source] === slug);
+    if (entree) return `${ROUTES.chambres[cible]}/${entree[cible]}`;
+  }
+
+  return ROUTES.accueil[cible];
+}
