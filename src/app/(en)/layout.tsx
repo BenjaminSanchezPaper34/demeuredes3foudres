@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { fraunces } from "../polices";
 import "../globals.css";
 import Coque from "@/components/Coque";
+import AmorceAnimation from "@/components/AmorceAnimation";
 import { SITE, EN_LIGNE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -26,6 +27,9 @@ export const viewport: Viewport = {
 export default function LayoutEn({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={fraunces.variable}>
+      <head>
+        <AmorceAnimation />
+      </head>
       <body>
         <a
           href="#contenu"

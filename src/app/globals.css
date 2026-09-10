@@ -106,13 +106,16 @@
   .lien:hover { background-size: 100% 1px; }
 }
 
-/* État initial des reveals GSAP : posé en CSS pour éviter le flash
-   au premier rendu. Neutralisé si l'utilisateur refuse le mouvement. */
-[data-reveal] { opacity: 0; transform: translateY(32px); }
+/* État initial des reveals GSAP.
+   Le masquage est conditionné à la classe `anime`, posée par un script
+   en ligne dans le <head> : sans JavaScript, rien n'est jamais caché.
+   Ce même script retire la classe au bout de 2,5 s si GSAP n'a pas pris
+   la main — un CDN qui tombe ne doit pas laisser une page blanche. */
+.anime [data-reveal] { opacity: 0; transform: translateY(32px); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .anime [data-reveal] { opacity: 1 !important; transform: none !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

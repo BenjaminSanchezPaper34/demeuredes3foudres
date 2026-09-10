@@ -4,6 +4,13 @@ import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+declare global {
+  interface Window {
+    /** Posé par le script en ligne du <head> : désamorce le filet de sécurité. */
+    __revealPret?: () => void;
+  }
+}
+
 /**
  * Contrôleur unique des reveals au scroll.
  * Tout élément portant `data-reveal` est révélé : fade + translateY(32px).
@@ -13,10 +20,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
  */
 export default function Reveal() {
   useEffect(() => {
+    const racine = document.documentElement;
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // Le CSS a déjà neutralisé l'état initial : rien à animer.
+      // Rien n'est animé : on rend simplement le contenu visible.
+      racine.classList.remove("anime");
       return;
     }
+
+    // Coupe le filet de sécurité posé par le script en ligne du <head>.
+    window.__revealPret?.();
 
     gsap.registerPlugin(ScrollTrigger);
 
