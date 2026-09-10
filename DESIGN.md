@@ -101,4 +101,15 @@ Contrastes vérifiés : Chêne/Pierre 15:1 · Taupe/Pierre 6,3:1 · Lie/Pierre 7
 - Bilingue FR/EN : la typo doit tenir sur des titres anglais plus courts — vérifier les `clamp()` dans les deux langues avant validation.
 
 ---
+
+## 6. Interface — décisions du 10/09/2026 (validées)
+
+- **Icônes maison** (`src/components/Icone.tsx`, tracés dans `icones/traces.json`) : géométriques et sobres, grille 24, trait 1,5 px, bouts ronds, couleur héritée du texte. 43 icônes en six familles (navigation, contact, preuve, équipements, lieu, réseaux). **Plus aucune icône de bibliothèque sur le site.** Le lien au logo passe par le motif des trois foudres — bouton menu mobile, ornement devant chaque kicker de section, puce du hero — jamais par une imitation du trait à main levée.
+- **Pictogramme** (`Marque.tsx`) : les trois foudres extraits du logo, seuls, en logo mobile. Le nom en toutes lettres est illisible sous 40 px de haut.
+- **CTA** : 52 px de haut et pleine largeur au doigt, 44 px et largeur au contenu à partir de `sm`. Quatre variantes et pas une de plus : `plein` (lie-de-vin, fonds clairs), `ligne`, `clair` (Pierre sur Ardoise et sur photo), `voile` (filet Pierre sur photo). Flèche qui avance sur les actions qui mènent quelque part ; contraction à 0,98 à l'appui.
+- **Barre de réservation fixe, mobile** : disponibilités + téléphone, apparaît une fois 60 % de la hauteur d'écran défilés, s'efface quand le tiroir Smoobu est ouvert. Fond Ardoise, donc CTA inversé en Pierre. Safe area respectée, réserve de 6,5 rem sous le pied de page.
+- **Équipements** en tuiles icône + libellé, deux colonnes au doigt.
+- **Formulaire** : champs 48 px, corps 16 px — pas de zoom iOS.
+
+---
 *Validé par Benjamin le : ____________*

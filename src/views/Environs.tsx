@@ -94,14 +94,10 @@ export default function Environs({ lang }: { lang: Lang }) {
               : "Sleep in the middle of all of it"}
           </Titre>
           <div className="flex flex-wrap gap-3 md:justify-end" data-reveal>
-            <Bouton href={route("chambres", lang)} variante="clair">
+            <Bouton href={route("chambres", lang)} variante="clair" fleche>
               {UI.tousLesLogements[lang]}
             </Bouton>
-            <Bouton
-              href={route("acces", lang)}
-              variante="clair"
-              className="!bg-transparent !text-pierre border border-pierre/60 hover:!bg-pierre/10"
-            >
+            <Bouton href={route("acces", lang)} variante="voile">
               {LIBELLES.acces[lang]}
             </Bouton>
           </div>

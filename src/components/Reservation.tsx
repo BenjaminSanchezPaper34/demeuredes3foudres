@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { X, Phone, Mail } from "lucide-react";
+import { Icone } from "./Icone";
 import { track } from "@vercel/analytics";
 import { SITE, type Lang } from "@/lib/site";
 import { UI } from "@/content/ui";
@@ -29,7 +29,7 @@ declare global {
   }
 }
 
-type Contexte = { ouvrir: (smoobuId?: number | null) => void };
+type Contexte = { ouvrir: (smoobuId?: number | null) => void; ouvert: boolean };
 const CtxReservation = createContext<Contexte | null>(null);
 
 export function useReservation() {
@@ -63,7 +63,7 @@ export function FournisseurReservation({
   }, [ouvert]);
 
   return (
-    <CtxReservation.Provider value={{ ouvrir }}>
+    <CtxReservation.Provider value={{ ouvrir, ouvert }}>
       {children}
       <AnimatePresence>
         {ouvert && (
@@ -110,7 +110,7 @@ function Tiroir({
             aria-label={UI.fermer[lang]}
             className="flex h-11 w-11 items-center justify-center text-taupe transition-colors hover:text-lie"
           >
-            <X size={20} />
+            <Icone nom="fermer" taille={22} />
           </button>
         </header>
         <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-5">
@@ -199,13 +199,13 @@ function Repli({ lang }: { lang: Lang }) {
           onClick={() => track("tel", { depuis: "tiroir" })}
           className="inline-flex min-h-11 items-center gap-2 rounded-fin border border-chene/25 px-4 text-base transition-colors hover:border-lie hover:text-lie"
         >
-          <Phone size={16} /> {SITE.telephoneAffiche}
+          <Icone nom="telephone" taille={18} /> {SITE.telephoneAffiche}
         </a>
         <a
           href={`mailto:${SITE.email}`}
           className="inline-flex min-h-11 items-center gap-2 rounded-fin border border-chene/25 px-4 text-base transition-colors hover:border-lie hover:text-lie"
         >
-          <Mail size={16} /> {UI.ecrire[lang]}
+          <Icone nom="mail" taille={18} /> {UI.ecrire[lang]}
         </a>
       </div>
     </footer>
@@ -219,16 +219,26 @@ export function BoutonReserver({
   variante = "plein",
   className,
   libelle,
+  fleche,
+  pleineLargeur,
 }: {
   lang: Lang;
   smoobuId?: number | null;
-  variante?: "plein" | "ligne" | "clair";
+  variante?: "plein" | "ligne" | "clair" | "voile";
   className?: string;
   libelle?: string;
+  fleche?: boolean;
+  pleineLargeur?: boolean;
 }) {
   const { ouvrir } = useReservation();
   return (
-    <BoutonAction variante={variante} className={className} onClick={() => ouvrir(smoobuId)}>
+    <BoutonAction
+      variante={variante}
+      className={className}
+      fleche={fleche}
+      pleineLargeur={pleineLargeur}
+      onClick={() => ouvrir(smoobuId)}
+    >
       {libelle ?? UI.voirDisponibilites[lang]}
     </BoutonAction>
   );

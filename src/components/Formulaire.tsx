@@ -10,7 +10,7 @@ import { BoutonAction } from "./Bouton";
 type Etat = "repos" | "envoi" | "ok" | "erreur";
 
 const champ =
-  "w-full rounded-fin border border-chene/25 bg-pierre px-4 py-3 text-base text-chene transition-colors placeholder:text-taupe/60 focus:border-lie focus:outline-none";
+  "min-h-12 w-full rounded-fin border border-chene/25 bg-pierre px-4 py-3 text-base text-chene transition-colors placeholder:text-taupe/60 focus:border-lie focus:outline-none";
 
 export default function Formulaire({ lang }: { lang: Lang }) {
   const params = useSearchParams();
@@ -96,7 +96,7 @@ export default function Formulaire({ lang }: { lang: Lang }) {
         </p>
       )}
 
-      <BoutonAction type="submit" disabled={etat === "envoi"} className="disabled:opacity-60">
+      <BoutonAction type="submit" disabled={etat === "envoi"} fleche className="disabled:opacity-60">
         {etat === "envoi" ? c.envoi[lang] : c.envoyer[lang]}
       </BoutonAction>
 

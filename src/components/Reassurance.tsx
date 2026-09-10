@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { Icone } from "./Icone";
 import { SITE, type Lang } from "@/lib/site";
 import { UI } from "@/content/ui";
 
@@ -20,10 +20,11 @@ export function NoteGoogle({ lang, sombre }: { lang: Lang; sombre?: boolean }) {
       </span>
       <span className="flex gap-0.5" aria-hidden>
         {Array.from({ length: 5 }).map((_, i) => (
-          <Star
+          <Icone
             key={i}
-            size={16}
-            className={i < Math.round(note) ? "fill-lie text-lie" : "text-sauge"}
+            nom={i < Math.round(note) ? "etoile" : "etoile-vide"}
+            taille={16}
+            className={i < Math.round(note) ? "text-lie" : "text-sauge"}
           />
         ))}
       </span>

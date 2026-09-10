@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Lang } from "@/lib/site";
 import { UI } from "@/content/ui";
+import { Icone } from "./Icone";
 
 type Fond = "pierre" | "chaux" | "ardoise";
 
@@ -30,14 +31,19 @@ export function Section({
   );
 }
 
-/** Sur-titre. Toujours en Switzer, jamais en display. */
+/**
+ * Sur-titre. Toujours en Switzer, jamais en display.
+ * Précédé du motif des trois foudres, en Sauge : la signature discrète qui
+ * relie chaque section au logo sans jamais crier.
+ */
 export function Kicker({ children, sombre }: { children: ReactNode; sombre?: boolean }) {
   return (
     <p
-      className={`mb-4 text-sm font-medium uppercase tracking-[0.16em] ${
+      className={`mb-4 flex items-center gap-2.5 text-sm font-medium uppercase tracking-[0.16em] ${
         sombre ? "text-sauge" : "text-taupe"
       }`}
     >
+      <Icone nom="trois-foudres" taille={18} className="text-sauge" />
       {children}
     </p>
   );

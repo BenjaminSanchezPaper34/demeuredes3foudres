@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Facebook, Phone, Mail, MapPin } from "lucide-react";
+import { Icone } from "./Icone";
 import { SITE, adresseUneLigne, type Lang } from "@/lib/site";
 import { NAV, NAV_PIED, route } from "@/lib/routes";
 import { LIBELLES } from "@/content/ui";
@@ -16,7 +16,7 @@ import { LienTelephone, LienItineraire } from "./Traces";
 export default function Pied({ lang }: { lang: Lang }) {
   return (
     <footer className="relative bg-ardoise text-pierre grain sur-ardoise">
-      <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+      <div className="mx-auto max-w-6xl px-5 pb-[calc(6.5rem+env(safe-area-inset-bottom))] pt-16 md:px-8 md:py-20 lg:pb-20">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
             <p className="font-display text-2xl">{SITE.nom}</p>
@@ -24,7 +24,7 @@ export default function Pied({ lang }: { lang: Lang }) {
 
             <address className="mt-5 not-italic">
               <LienItineraire className="flex min-h-11 items-start gap-3 py-1 text-base text-pierre/85 transition-colors hover:text-white">
-                <MapPin size={18} className="mt-0.5 shrink-0 text-sauge" />
+                <Icone nom="adresse" taille={18} className="mt-0.5 text-sauge" />
                 <span>
                   {SITE.adresse.rue}
                   <br />
@@ -35,14 +35,14 @@ export default function Pied({ lang }: { lang: Lang }) {
                 depuis="pied"
                 className="flex min-h-11 items-center gap-3 py-1 text-base text-pierre/85 transition-colors hover:text-white"
               >
-                <Phone size={18} className="shrink-0 text-sauge" />
+                <Icone nom="telephone" taille={18} className="text-sauge" />
                 {SITE.telephoneAffiche}
               </LienTelephone>
               <a
                 href={`mailto:${SITE.email}`}
                 className="flex min-h-11 items-center gap-3 py-1 text-base text-pierre/85 transition-colors hover:text-white"
               >
-                <Mail size={18} className="shrink-0 text-sauge" />
+                <Icone nom="mail" taille={18} className="text-sauge" />
                 {SITE.email}
               </a>
             </address>
@@ -101,7 +101,7 @@ export default function Pied({ lang }: { lang: Lang }) {
                 aria-label="Instagram"
                 className="flex h-11 w-11 items-center justify-center rounded-fin border border-pierre/20 text-pierre/75 transition-colors hover:border-pierre hover:text-white"
               >
-                <Instagram size={18} />
+                <Icone nom="instagram" taille={20} />
               </a>
               <a
                 href={SITE.reseaux.facebook}
@@ -110,7 +110,7 @@ export default function Pied({ lang }: { lang: Lang }) {
                 aria-label="Facebook"
                 className="flex h-11 w-11 items-center justify-center rounded-fin border border-pierre/20 text-pierre/75 transition-colors hover:border-pierre hover:text-white"
               >
-                <Facebook size={18} />
+                <Icone nom="facebook" taille={20} />
               </a>
             </div>
           </nav>

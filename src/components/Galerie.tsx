@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Icone } from "./Icone";
 import type { Lang } from "@/lib/site";
 import { UI } from "@/content/ui";
 import type { Photo } from "@/content/logements";
@@ -75,7 +75,7 @@ export default function Galerie({ photos, lang }: { photos: Photo[]; lang: Lang 
                 aria-label={UI.fermer[lang]}
                 className="flex h-11 w-11 items-center justify-center"
               >
-                <X size={24} />
+                <Icone nom="fermer" taille={24} />
               </button>
             </div>
 
@@ -97,7 +97,7 @@ export default function Galerie({ photos, lang }: { photos: Photo[]; lang: Lang 
                 aria-label={UI.precedent[lang]}
                 className="flex h-12 w-12 items-center justify-center rounded-fin border border-pierre/25 text-pierre"
               >
-                <ChevronLeft size={22} />
+                <Icone nom="chevron-gauche" taille={22} />
               </button>
               <p className="mesure text-center text-sm text-pierre/70">{photos[index].alt[lang]}</p>
               <button
@@ -105,7 +105,7 @@ export default function Galerie({ photos, lang }: { photos: Photo[]; lang: Lang 
                 aria-label={UI.suivant[lang]}
                 className="flex h-12 w-12 items-center justify-center rounded-fin border border-pierre/25 text-pierre"
               >
-                <ChevronRight size={22} />
+                <Icone nom="chevron-droite" taille={22} />
               </button>
             </div>
           </motion.div>

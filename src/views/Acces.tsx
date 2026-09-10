@@ -1,4 +1,4 @@
-import { MapPin, Phone, Car } from "lucide-react";
+import { Icone } from "@/components/Icone";
 import type { Lang } from "@/lib/site";
 import { SITE, adresseUneLigne } from "@/lib/site";
 import { route } from "@/lib/routes";
@@ -80,21 +80,21 @@ export default function Acces({ lang }: { lang: Lang }) {
               {SITE.adresse.codePostal} {SITE.adresse.ville}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <LienItineraire className="inline-flex min-h-11 items-center gap-2 rounded-fin bg-lie px-6 text-base font-medium text-pierre transition-all duration-300 hover:bg-lie-clair hover:shadow-leve">
-                <MapPin size={16} /> {UI.itineraire[lang]}
+              <LienItineraire className="inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-fin bg-lie px-6 text-base font-medium text-pierre transition-all duration-300 hover:bg-lie-clair hover:shadow-leve active:scale-[0.98] sm:min-h-11 sm:w-auto">
+                <Icone nom="itineraire" taille={18} /> {UI.itineraire[lang]}
               </LienItineraire>
               <LienTelephone
                 depuis="acces"
-                className="inline-flex min-h-11 items-center gap-2 rounded-fin border border-chene/25 px-6 text-base transition-colors hover:border-lie hover:text-lie"
+                className="inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-fin border border-chene/25 px-6 text-base transition-colors hover:border-lie hover:text-lie active:scale-[0.98] sm:min-h-11 sm:w-auto"
               >
-                <Phone size={16} /> {SITE.telephoneAffiche}
+                <Icone nom="telephone" taille={18} /> {SITE.telephoneAffiche}
               </LienTelephone>
             </div>
           </address>
 
           <div className="border-l-2 border-sauge py-1 pl-6">
             <p className="flex items-center gap-2 font-display text-xl">
-              <Car size={20} className="text-sauge" />
+              <Icone nom="borne" taille={22} className="text-sauge" />
               {lang === "fr" ? "Voiture électrique" : "Electric vehicle"}
             </p>
             <p className="mesure mt-3 text-base leading-relaxed text-taupe">

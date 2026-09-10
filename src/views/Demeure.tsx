@@ -8,6 +8,10 @@ import { Section, Kicker, Titre, Prose, Filet } from "@/components/Bloc";
 import { Bouton } from "@/components/Bouton";
 import { NoteGoogle } from "@/components/Reassurance";
 import { JsonLd, filAriane } from "@/components/JsonLd";
+import ListeExtras from "@/components/ListeExtras";
+import type { NomIcone } from "@/components/Icone";
+
+const ICONES_EXTRAS: NomIcone[] = ["piscine", "jardin", "petanque", "billard", "velo", "borne"];
 
 export default function Demeure({ lang }: { lang: Lang }) {
   return (
@@ -66,19 +70,7 @@ export default function Demeure({ lang }: { lang: Lang }) {
           <div>
             <Kicker>{lang === "fr" ? "Les petits +" : "The extras"}</Kicker>
             <Titre>{lang === "fr" ? "Tout est là, dehors" : "It's all outside"}</Titre>
-            <ul className="mt-8 space-y-4" data-reveal="stagger">
-              {ACCUEIL.extras[lang].map((e, i) => (
-                <li
-                  key={i}
-                  className="flex gap-4 border-b border-sauge/40 pb-4 text-base leading-relaxed text-taupe"
-                >
-                  <span className="font-display text-lg tabular-nums text-sauge">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  {e}
-                </li>
-              ))}
-            </ul>
+            <ListeExtras items={ACCUEIL.extras[lang]} icones={ICONES_EXTRAS} />
           </div>
           <div className="relative aspect-[3/4] overflow-hidden bg-chaux" data-reveal>
             <Image
@@ -105,7 +97,7 @@ export default function Demeure({ lang }: { lang: Lang }) {
               {ACCUEIL.accueilToute[lang]}
             </p>
           </div>
-          <Bouton href={route("chambres", lang)}>{UI.tousLesLogements[lang]}</Bouton>
+          <Bouton href={route("chambres", lang)} fleche>{UI.tousLesLogements[lang]}</Bouton>
         </div>
       </Section>
     </>

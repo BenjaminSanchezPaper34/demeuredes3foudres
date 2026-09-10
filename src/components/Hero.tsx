@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { Icone } from "./Icone";
 import type { ReactNode } from "react";
 
 /**
@@ -33,7 +33,7 @@ export default function Hero({
 }) {
   const classeHauteur =
     hauteur === "plein"
-      ? "min-h-[86svh] md:min-h-[92svh]"
+      ? "min-h-[78svh] md:min-h-[92svh]"
       : "min-h-[58svh] md:min-h-[64svh]";
 
   return (
@@ -62,7 +62,8 @@ export default function Hero({
 
       <div className="mx-auto w-full max-w-6xl px-5 pb-24 pt-32 md:px-8 md:pb-28">
         {kicker && (
-          <p className="mb-4 text-sm font-medium uppercase tracking-[0.16em] text-pierre/80">
+          <p className="mb-4 flex items-center gap-2.5 text-sm font-medium uppercase tracking-[0.16em] text-pierre/80">
+            <Icone nom="trois-foudres" taille={18} className="text-pierre/70" />
             {kicker}
           </p>
         )}
@@ -74,13 +75,13 @@ export default function Hero({
             {sousTitre}
           </p>
         )}
-        {actions && <div className="mt-9 flex flex-wrap gap-3">{actions}</div>}
+        {actions && <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">{actions}</div>}
       </div>
 
       {hauteur === "plein" && (
-        <ChevronDown
-          aria-hidden
-          size={28}
+        <Icone
+          nom="chevron-bas"
+          taille={26}
           className="fleche-scroll absolute bottom-7 left-1/2 -translate-x-1/2 text-pierre"
         />
       )}

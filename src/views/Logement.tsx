@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Check } from "lucide-react";
+import { Icone } from "@/components/Icone";
 import type { Lang } from "@/lib/site";
 import { route, urlLogement, type LogementId } from "@/lib/routes";
 import { LOGEMENTS, parId } from "@/content/logements";
@@ -44,7 +44,7 @@ export default function Logement({ id, lang }: { id: LogementId; lang: Lang }) {
           href={route("chambres", lang)}
           className="mb-10 inline-flex items-center gap-2 text-base text-taupe transition-colors hover:text-lie"
         >
-          <ArrowLeft size={16} /> {UI.retourChambres[lang]}
+          <Icone nom="fleche-gauche" taille={16} /> {UI.retourChambres[lang]}
         </Link>
 
         <div className="grid gap-14 md:grid-cols-[1.4fr_1fr] md:gap-16">
@@ -54,16 +54,21 @@ export default function Logement({ id, lang }: { id: LogementId; lang: Lang }) {
             <h2 className="font-sans text-sm font-semibold uppercase tracking-[0.16em] text-taupe">
               {UI.equipements[lang]}
             </h2>
-            <ul className="mt-5 space-y-3" data-reveal="stagger">
+            {/* Tuiles : scannables d'un regard, c'est ce qu'un client compare
+                entre deux chambres. Deux colonnes au doigt, trois au large. */}
+            <ul className="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-2" data-reveal="stagger">
               {l.equipements.map((e, i) => (
-                <li key={i} className="flex items-start gap-3 text-base text-chene">
-                  <Check size={16} className="mt-1 shrink-0 text-sauge" />
-                  {e[lang]}
+                <li
+                  key={i}
+                  className="flex min-h-[4.5rem] flex-col justify-between gap-2 rounded-bloc border border-sauge/40 bg-chaux/60 p-3.5"
+                >
+                  <Icone nom={e.icone} taille={22} className="text-sauge" />
+                  <span className="text-sm leading-snug text-chene">{e[lang]}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-8">
-              <BoutonReserver lang={lang} smoobuId={l.smoobuId} className="w-full sm:w-auto" />
+              <BoutonReserver lang={lang} smoobuId={l.smoobuId} fleche />
             </div>
           </aside>
         </div>

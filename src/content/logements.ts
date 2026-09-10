@@ -1,7 +1,10 @@
 import type { Lang } from "@/lib/site";
 import type { LogementId } from "@/lib/routes";
+import type { NomIcone } from "@/components/Icone";
 
 export type Texte = Record<Lang, string>;
+/** Un équipement = un libellé bilingue + son icône maison (tuiles des fiches logement). */
+export type Equipement = Texte & { icone: NomIcone };
 export type Photo = { src: string; alt: Texte };
 
 export type Logement = {
@@ -14,20 +17,21 @@ export type Logement = {
   chambres: number;
   /** Corps de texte, un paragraphe par entrée. Écrits par les propriétaires. */
   texte: Record<Lang, string[]>;
-  equipements: Texte[];
+  equipements: Equipement[];
   photos: Photo[];
   /** Identifiant du logement dans Smoobu — renseigné à réception des accès. */
   smoobuId: number | null;
 };
 
 /** Équipements communs aux trois logements, pour éviter la divergence. */
-const climatisation: Texte = { fr: "Climatisation réversible", en: "Reversible air conditioning" };
-const wifi: Texte = { fr: "Wi-Fi", en: "Wi-Fi" };
-const wc: Texte = { fr: "WC séparé", en: "Separate toilet" };
-const coffre: Texte = { fr: "Coffre-fort", en: "Safe" };
-const mursChauffants: Texte = {
+const climatisation: Equipement = { fr: "Climatisation réversible", en: "Reversible air conditioning", icone: "clim" };
+const wifi: Equipement = { fr: "Wi-Fi", en: "Wi-Fi", icone: "wifi" };
+const wc: Equipement = { fr: "WC séparé", en: "Separate toilet", icone: "wc" };
+const coffre: Equipement = { fr: "Coffre-fort", en: "Safe", icone: "coffre" };
+const mursChauffants: Equipement = {
   fr: "Murs chauffants dans la salle d'eau",
   en: "Heated walls in the bathroom",
+  icone: "murs-chauffants",
 };
 
 export const LOGEMENTS: Logement[] = [
@@ -54,14 +58,14 @@ export const LOGEMENTS: Logement[] = [
       ],
     },
     equipements: [
-      { fr: "Douche à l'italienne", en: "Walk-in shower" },
-      { fr: "Baignoire", en: "Bathtub" },
-      { fr: "Literie 160 premium pour 2 personnes", en: "Premium 160 cm bed for 2" },
+      { fr: "Douche à l'italienne", en: "Walk-in shower", icone: "douche" },
+      { fr: "Baignoire", en: "Bathtub", icone: "baignoire" },
+      { fr: "Literie 160 premium pour 2 personnes", en: "Premium 160 cm bed for 2", icone: "lit" },
       mursChauffants,
       wc,
       climatisation,
       wifi,
-      { fr: "Terrasse privative", en: "Private terrace" },
+      { fr: "Terrasse privative", en: "Private terrace", icone: "terrasse" },
       coffre,
     ],
     photos: [
@@ -103,8 +107,8 @@ export const LOGEMENTS: Logement[] = [
       ],
     },
     equipements: [
-      { fr: "Douche extra-plate", en: "Low-profile shower" },
-      { fr: "Literie 160 premium pour 2 personnes", en: "Premium 160 cm bed for 2" },
+      { fr: "Douche extra-plate", en: "Low-profile shower", icone: "douche" },
+      { fr: "Literie 160 premium pour 2 personnes", en: "Premium 160 cm bed for 2", icone: "lit" },
       mursChauffants,
       wc,
       climatisation,
@@ -146,14 +150,14 @@ export const LOGEMENTS: Logement[] = [
       ],
     },
     equipements: [
-      { fr: "Douche à l'italienne", en: "Walk-in shower" },
-      { fr: "Cuisine équipée", en: "Fitted kitchen" },
-      { fr: "Literie 160 premium pour 2 × 2 personnes", en: "Premium 160 cm beds for 2 × 2" },
+      { fr: "Douche à l'italienne", en: "Walk-in shower", icone: "douche" },
+      { fr: "Cuisine équipée", en: "Fitted kitchen", icone: "cuisine" },
+      { fr: "Literie 160 premium pour 2 × 2 personnes", en: "Premium 160 cm beds for 2 × 2", icone: "lit" },
       mursChauffants,
       wc,
       climatisation,
       wifi,
-      { fr: "Espace extérieur", en: "Outdoor space" },
+      { fr: "Espace extérieur", en: "Outdoor space", icone: "jardin" },
       coffre,
     ],
     photos: [

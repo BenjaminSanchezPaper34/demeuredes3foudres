@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Icone } from "@/components/Icone";
 import type { Lang } from "@/lib/site";
 import { SITE } from "@/lib/site";
 import { route } from "@/lib/routes";
@@ -46,7 +46,7 @@ export default function Contact({ lang }: { lang: Lang }) {
                   depuis="contact"
                   className="group flex items-start gap-4 transition-colors hover:text-lie"
                 >
-                  <Phone size={20} className="mt-1 shrink-0 text-sauge" />
+                  <Icone nom="telephone" taille={22} className="mt-1 text-sauge" />
                   <span>
                     <span className="block font-display text-2xl">{SITE.telephoneAffiche}</span>
                     <span className="mt-1 block text-sm text-taupe">
@@ -60,13 +60,13 @@ export default function Contact({ lang }: { lang: Lang }) {
                   href={`mailto:${SITE.email}`}
                   className="group flex items-start gap-4 transition-colors hover:text-lie"
                 >
-                  <Mail size={20} className="mt-1 shrink-0 text-sauge" />
+                  <Icone nom="mail" taille={22} className="mt-1 text-sauge" />
                   <span className="break-all text-lg">{SITE.email}</span>
                 </a>
               </li>
               <li>
                 <LienItineraire className="group flex items-start gap-4 transition-colors hover:text-lie">
-                  <MapPin size={20} className="mt-1 shrink-0 text-sauge" />
+                  <Icone nom="adresse" taille={22} className="mt-1 text-sauge" />
                   <span className="text-lg not-italic">
                     {SITE.adresse.rue}
                     <br />

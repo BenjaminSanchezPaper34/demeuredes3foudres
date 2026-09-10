@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { Icone, type NomIcone } from "@/components/Icone";
+import ListeExtras from "@/components/ListeExtras";
 import type { Lang } from "@/lib/site";
 import { route } from "@/lib/routes";
 import { LOGEMENTS } from "@/content/logements";
@@ -13,6 +14,9 @@ import { BoutonReserver } from "@/components/Reservation";
 import CarteLogement from "@/components/CarteLogement";
 import { NoteGoogle, PrixDirect } from "@/components/Reassurance";
 import { JsonLd, ficheEtablissement } from "@/components/JsonLd";
+
+/** Une icône par « petit + », dans l'ordre de ACCUEIL.extras. */
+const ICONES_EXTRAS: NomIcone[] = ["piscine", "jardin", "petanque", "billard", "velo", "borne"];
 
 /**
  * Accueil. Elle doit convertir seule : Airbnb ne produit rien et Booking est
@@ -37,8 +41,8 @@ export default function Accueil({ lang }: { lang: Lang }) {
         sousTitre={ACCUEIL.sousTitre[lang]}
         actions={
           <>
-            <BoutonReserver lang={lang} variante="clair" />
-            <Bouton href={route("chambres", lang)} variante="clair" className="!bg-transparent !text-pierre border border-pierre/60 hover:!bg-pierre/10">
+            <BoutonReserver lang={lang} variante="clair" fleche />
+            <Bouton href={route("chambres", lang)} variante="voile">
               {UI.tousLesLogements[lang]}
             </Bouton>
           </>
@@ -69,8 +73,8 @@ export default function Accueil({ lang }: { lang: Lang }) {
             <div className="mt-6">
               <Prose paragraphes={ACCUEIL.intro[lang]} />
             </div>
-            <Bouton href={route("laDemeure", lang)} variante="ligne" className="mt-8">
-              {UI.enSavoirPlus[lang]} <ArrowRight size={16} />
+            <Bouton href={route("laDemeure", lang)} variante="ligne" fleche className="mt-8">
+              {UI.enSavoirPlus[lang]}
             </Bouton>
           </div>
           <div className="relative aspect-[4/5] overflow-hidden bg-chaux" data-reveal>
@@ -116,6 +120,7 @@ export default function Accueil({ lang }: { lang: Lang }) {
         <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8" data-reveal="stagger">
           {[
             {
+              icone: "onsen" as NomIcone,
               href: route("bainsJaponais", lang),
               image: "/images/bains-japonais-onsen.jpg",
               titre: LIBELLES.bainsJaponais[lang],
@@ -129,6 +134,7 @@ export default function Accueil({ lang }: { lang: Lang }) {
                   : "Japanese bath built inside a former wine vat, sea-green mosaic",
             },
             {
+              icone: "foudre" as NomIcone,
               href: route("leChai", lang),
               image: "/images/chai-foudre-centenaire.jpg",
               titre: LIBELLES.leChai[lang],
@@ -142,6 +148,7 @@ export default function Accueil({ lang }: { lang: Lang }) {
                   : "Century-old Russian-oak tun in the property's wine hall",
             },
             {
+              icone: "curiosites" as NomIcone,
               href: route("laDemeure", lang),
               image: "/images/cabinet-de-curiosites.jpg",
               titre:
@@ -156,7 +163,7 @@ export default function Accueil({ lang }: { lang: Lang }) {
                   : "The cabinet of curiosities and its Napoleon III billiard table",
             },
           ].map((c) => (
-            <Link key={c.href} href={c.href} className="group block">
+            <Link key={c.href} href={c.href} className="group block active:opacity-80">
               <div className="relative aspect-[4/3] overflow-hidden bg-chene">
                 <Image
                   src={c.image}
@@ -166,7 +173,8 @@ export default function Accueil({ lang }: { lang: Lang }) {
                   className="object-cover transition-transform duration-700 ease-[var(--ease-feutre)] group-hover:scale-[1.04]"
                 />
               </div>
-              <h3 className="mt-5 font-display text-2xl text-pierre transition-colors group-hover:text-sauge">
+              <Icone nom={c.icone} taille={24} className="mt-5 text-sauge" />
+              <h3 className="mt-3 font-display text-2xl text-pierre transition-colors group-hover:text-sauge">
                 {c.titre}
               </h3>
               <p className="mesure mt-3 text-base leading-relaxed text-pierre/70">{c.texte}</p>
@@ -181,16 +189,7 @@ export default function Accueil({ lang }: { lang: Lang }) {
           <div>
             <Kicker>{lang === "fr" ? "Les petits +" : "The extras"}</Kicker>
             <Titre>{lang === "fr" ? "Tout est là, dehors" : "It's all outside"}</Titre>
-            <ul className="mt-8 space-y-4" data-reveal="stagger">
-              {ACCUEIL.extras[lang].map((e, i) => (
-                <li key={i} className="flex gap-4 border-b border-sauge/40 pb-4 text-base leading-relaxed text-taupe">
-                  <span className="font-display text-lg tabular-nums text-sauge">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  {e}
-                </li>
-              ))}
-            </ul>
+            <ListeExtras items={ACCUEIL.extras[lang]} icones={ICONES_EXTRAS} />
           </div>
           <div>
             <Kicker>{lang === "fr" ? "La rénovation" : "The restoration"}</Kicker>
@@ -212,7 +211,7 @@ export default function Accueil({ lang }: { lang: Lang }) {
             </p>
           </div>
           <div className="flex flex-wrap gap-3 md:justify-end" data-reveal>
-            <BoutonReserver lang={lang} />
+            <BoutonReserver lang={lang} fleche />
             <Bouton href={route("tarifs", lang)} variante="ligne">
               {LIBELLES.tarifs[lang]}
             </Bouton>
@@ -226,8 +225,8 @@ export default function Accueil({ lang }: { lang: Lang }) {
                 ? "Caux, Pézenas, le Salagou, la mer à vingt minutes"
                 : "Caux, Pézenas, Lake Salagou, the sea twenty minutes away"}
             </p>
-            <Bouton href={route("environs", lang)} variante="ligne">
-              {LIBELLES.environs[lang]} <ArrowRight size={16} />
+            <Bouton href={route("environs", lang)} variante="ligne" fleche>
+              {LIBELLES.environs[lang]}
             </Bouton>
           </div>
         </div>

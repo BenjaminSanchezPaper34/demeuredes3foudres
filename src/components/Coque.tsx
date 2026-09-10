@@ -6,6 +6,7 @@ import Pied from "./Pied";
 import SmoothScroll from "./SmoothScroll";
 import Reveal from "./Reveal";
 import { FournisseurReservation } from "./Reservation";
+import BarreReservation from "./BarreReservation";
 
 /**
  * Coque commune aux deux langues. Les deux layouts racines (fr et en) ne
@@ -20,6 +21,7 @@ export default function Coque({ lang, children }: { lang: Lang; children: ReactN
       <Nav lang={lang} />
       <main id="contenu">{children}</main>
       <Pied lang={lang} />
+      <BarreReservation lang={lang} />
       <Analytics />
     </FournisseurReservation>
   );
