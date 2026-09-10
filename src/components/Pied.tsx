@@ -7,13 +7,16 @@ import PaperSignature from "./PaperSignature";
 import { LienTelephone, LienItineraire } from "./Traces";
 
 /**
- * Pied de page. `relative` obligatoire : la signature Paper34 y cale
- * son voile fluide en absolute inset-0 (cf. PAPER34-SIGNATURE-KIT).
+ * Pied de page. `relative` obligatoire sur le <footer> : la signature Paper34
+ * y cale son voile fluide en absolute inset-0 (cf. PAPER34-SIGNATURE-KIT).
+ * Corollaire : AUCUN autre élément positionné entre le <footer> et la
+ * signature, sinon la fumée se borne à ce conteneur au lieu de couvrir
+ * toute la largeur de la fenêtre.
  */
 export default function Pied({ lang }: { lang: Lang }) {
   return (
     <footer className="relative bg-ardoise text-pierre grain sur-ardoise">
-      <div className="relative z-20 mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
+      <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
             <p className="font-display text-2xl">{SITE.nom}</p>
