@@ -35,7 +35,7 @@ export const QUESTIONS: Question[] = [
         libelle: { fr: "3 ou 4 personnes", en: "3 or 4 people" },
         // Seul logement pour plus de deux : la question tranche à elle seule.
         points: { grenier: 10 },
-        raison: { fr: "le seul logement pour quatre, avec ses deux chambres", en: "the only place for four, with its two bedrooms" },
+        raison: { fr: "quatre personnes, dans ses deux chambres", en: "four guests, in its two bedrooms" },
       },
     ],
   },
