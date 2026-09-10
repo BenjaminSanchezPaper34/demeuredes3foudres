@@ -13,6 +13,8 @@ import { Bouton } from "./Bouton";
 import { BoutonReserver } from "./Reservation";
 
 const ORDRE: LogementId[] = ["ecurie", "lingerie", "grenier"];
+/** Score à partir duquel une seule réponse suffit à suggérer. */
+const DECISIF = 10;
 
 /**
  * Configurateur de logement. Vraies cases radio (clavier, lecteur d'écran),
@@ -23,9 +25,6 @@ export default function Configurateur({ lang }: { lang: Lang }) {
   const [reponses, setReponses] = useState<Record<string, string>>({});
 
   const resultat = useMemo(() => {
-    const prêt = QUESTIONS.slice(0, 2).every((q) => reponses[q.id]);
-    if (!prêt) return null;
-
     const scores: Record<LogementId, number> = { ecurie: 0, lingerie: 0, grenier: 0 };
     const raisons: Record<LogementId, string[]> = { ecurie: [], lingerie: [], grenier: [] };
     for (const q of QUESTIONS) {
@@ -39,15 +38,17 @@ export default function Configurateur({ lang }: { lang: Lang }) {
     const [meilleur, second] = [...ORDRE].sort(
       (a, b) => scores[b] - scores[a] || ORDRE.indexOf(a) - ORDRE.indexOf(b),
     );
+    // On suggère dès que c'est fondé : les deux premières réponses, ou une
+    // seule réponse décisive (« 3 ou 4 personnes » : seul le Grenier convient).
+    const deuxPremieres = QUESTIONS.slice(0, 2).every((q) => reponses[q.id]);
+    if (!deuxPremieres && scores[meilleur] < DECISIF) return null;
     return { id: meilleur, raisons: raisons[meilleur], autre: scores[second] > 0 ? second : null };
   }, [reponses, lang]);
 
   const choisir = (question: string, option: string) => {
     const suivant = { ...reponses, [question]: option };
     setReponses(suivant);
-    if (QUESTIONS.slice(0, 2).every((q) => suivant[q.id])) {
-      track("configurateur", { ...suivant });
-    }
+    track("configurateur", { ...suivant });
   };
 
   const logement = resultat ? LOGEMENTS.find((l) => l.id === resultat.id)! : null;

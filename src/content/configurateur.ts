@@ -28,7 +28,7 @@ export const QUESTIONS: Question[] = [
         id: "deux",
         libelle: { fr: "1 ou 2 personnes", en: "1 or 2 people" },
         points: { ecurie: 2, lingerie: 2 },
-        raison: { fr: "une chambre pour deux", en: "a room for two" },
+        raison: { fr: "deux personnes", en: "two guests" },
       },
       {
         id: "quatre",
