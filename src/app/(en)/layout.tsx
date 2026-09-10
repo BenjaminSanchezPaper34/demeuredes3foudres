@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { fraunces } from "../polices";
 import "../globals.css";
 import Coque from "@/components/Coque";
-import { SITE } from "@/lib/site";
+import { SITE, EN_LIGNE } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   },
   description:
     "Bed & breakfast in Caux, near Pézenas. Two rooms and an apartment in a 19th-century wine-grower's house: swimming lane, Japanese baths, direct booking.",
+  robots: EN_LIGNE
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {

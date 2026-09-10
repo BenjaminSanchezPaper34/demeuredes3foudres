@@ -40,3 +40,15 @@ export const SITE = {
 export const adresseUneLigne = `${SITE.adresse.rue}, ${SITE.adresse.codePostal} ${SITE.adresse.ville}`;
 
 export type Lang = "fr" | "en";
+
+/**
+ * Le site est-il en production sur son domaine définitif ?
+ *
+ * Tant que `SITE_EN_LIGNE` n'est pas posé à "1" dans les variables Vercel,
+ * le site est en pré-production : `noindex` partout et robots.txt fermé.
+ * Sinon l'URL technique .vercel.app se fait indexer et se met à concurrencer
+ * le domaine du client.
+ *
+ * À basculer au moment de la mise en ligne, après le rattachement du domaine.
+ */
+export const EN_LIGNE = process.env.SITE_EN_LIGNE === "1";

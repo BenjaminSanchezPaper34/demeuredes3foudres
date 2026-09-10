@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { fraunces } from "../polices";
 import "../globals.css";
 import Coque from "@/components/Coque";
-import { SITE } from "@/lib/site";
+import { SITE, EN_LIGNE } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   },
   description:
     "Chambres d'hôtes à Caux, près de Pézenas. Deux chambres et un appartement dans une demeure vigneronne : couloir de nage, bains japonais, réservation en direct.",
+  robots: EN_LIGNE
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "@/lib/site";
+import { SITE, EN_LIGNE } from "@/lib/site";
 
 /**
  * Les robots d'IA sont autorisés explicitement : c'est par eux que passe
@@ -19,6 +19,11 @@ const ROBOTS_IA = [
 ];
 
 export default function robots(): MetadataRoute.Robots {
+  // Pré-production : rien ne s'indexe tant que le domaine n'est pas basculé.
+  if (!EN_LIGNE) {
+    return { rules: [{ userAgent: "*", disallow: "/" }] };
+  }
+
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow: ["/api/"] },
