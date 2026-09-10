@@ -123,6 +123,7 @@ Le prix direct sera inférieur au prix plateforme (≈ 17 % de commission écono
 
 - **Pas de faux prix barré.** Afficher un « prix plateforme » barré qu'on ne contrôle pas est une pratique commerciale trompeuse, et une comparaison avec un concurrent non nommé mais identifiable tombe sous le régime de la publicité comparative (elle doit être vérifiable). On affiche donc le **mécanisme**, pas un chiffre inventé : « Le meilleur tarif est ici. En direct, il n'y a pas de commission d'intermédiaire à payer. »
 - **Éviter « garanti ».** « Meilleur prix garanti » est un engagement contractuel opposable. « Le meilleur prix est ici, en direct » dit la même chose sans créer l'obligation.
+- **Le badge Booking** (Traveller Review Awards 2023, 9,7/10) est repris **en texte**, à côté de la note Google, jamais avec le logo (décision Benjamin, 10/09/2026). Ce n'est pas une comparaison de prix : c'est une preuve d'avis, et elle est vraie.
 
 À vérifier avant la remise en route de Booking : la **clause de parité tarifaire** du contrat. Elle est aujourd'hui largement caduque en Europe, mais elle se lit dans le contrat, pas dans un article de presse. Point signalé une fois, arbitrage au client.
 

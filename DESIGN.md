@@ -110,6 +110,9 @@ Contrastes vérifiés : Chêne/Pierre 15:1 · Taupe/Pierre 6,3:1 · Lie/Pierre 7
 - **Barre de réservation fixe, mobile** : disponibilités + téléphone, apparaît une fois 60 % de la hauteur d'écran défilés, s'efface quand le tiroir Smoobu est ouvert. Fond Ardoise, donc CTA inversé en Pierre. Safe area respectée, réserve de 6,5 rem sous le pied de page.
 - **Équipements** en tuiles icône + libellé, deux colonnes au doigt.
 - **Formulaire** : champs 48 px, corps 16 px — pas de zoom iOS.
+- **Sélecteur de langue** (décision du 10/09/2026) : « FR / EN », la langue courante en texte, l'autre en lien vers la page équivalente. Ni icône, ni bouton : un repère de lecture, pas une commande.
+- **Preuve** : la note Google et, en texte à côté, le 9,7/10 des Booking.com Traveller Review Awards 2023 — **jamais le logo Booking**, la marque n'a pas sa place sur un site dont l'argument est de s'en passer.
+- **Robustesse des reveals** : les déclencheurs GSAP se reposent à chaque navigation (`Reveal` dépend du chemin) ; les CTA de réservation et les vignettes sont de vrais liens interceptés après l'hydratation. Un clic n'est jamais perdu.
 
 ---
 *Validé par Benjamin le : ____________*
