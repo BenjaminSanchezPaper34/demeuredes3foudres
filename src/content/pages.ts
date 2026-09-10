@@ -200,6 +200,18 @@ export const ACCES = {
 
 /* ------------------------------------------------------------------- ENVIRONS */
 
+export type Lieu = {
+  id: string;
+  titre: T;
+  distance: T;
+  /** Photo de l'ancien site quand elle existe et que ses droits sont clairs ; sinon pas d'image. */
+  image?: string;
+  alt?: T;
+  texte: T;
+  /** Adresses recommandées par les propriétaires — c'est la valeur de cette page. */
+  liens?: { t: string; u: string }[];
+};
+
 export const ENVIRONS = {
   titre: { fr: "Caux et ses environs", en: "Caux and around" },
   sousTitre: {
@@ -208,88 +220,116 @@ export const ENVIRONS = {
   },
   essentiel: {
     fr: [
-      "Caux : village en circulade au cœur des vignes, trois restaurants, commerces de proximité sur la circulade.",
+      "Caux : village en circulade au cœur des vignes, trois restaurants (Les Valseuses, Le Rex, Tête d'Anchois), commerces de proximité sur la circulade.",
       "Une vingtaine de domaines viticoles autour du village pour une balade œnotouristique.",
-      "À moins d'une heure : Pézenas (7 km), le lac du Salagou (30 km), Sète et le bassin de Thau (45 km), les plages du Cap d'Agde et de Marseillan (25 km).",
+      "À moins d'une heure : Pézenas (7 km), le lac du Salagou (30 km), Béziers (30 km), les plages du Cap d'Agde et de Marseillan (25 km), Sète et le bassin de Thau (45 km), les Hauts Cantons.",
     ],
     en: [
-      "Caux: a circular village in the heart of the vineyards, three restaurants, everyday shops around the circulade.",
+      "Caux: a circular village in the heart of the vineyards, three restaurants (Les Valseuses, Le Rex, Tête d'Anchois), everyday shops around the circulade.",
       "Around twenty wine estates within reach of the village for a day of wine touring.",
-      "Under an hour away: Pézenas (7 km), Lake Salagou (30 km), Sète and the Thau lagoon (45 km), the beaches of Cap d'Agde and Marseillan (25 km).",
+      "Under an hour away: Pézenas (7 km), Lake Salagou (30 km), Béziers (30 km), the beaches of Cap d'Agde and Marseillan (25 km), Sète and the Thau lagoon (45 km), the Hauts Cantons.",
     ],
+  },
+  villageImage: "/images/village-de-caux.jpg",
+  villageAlt: {
+    fr: "Le village de Caux vu du ciel, sa circulade et son clocher au milieu des vignes",
+    en: "The village of Caux from the air, its circular streets and bell tower among the vines",
   },
   village: {
     fr: [
-      "Caux est un village languedocien en circulade, niché au cœur des vignes, à 7 km de Pézenas et à quelques minutes des sorties de l'A75. Le clocher et les ruelles concentriques en sont les deux traits marquants.",
-      "Trois restaurants s'y partagent les styles et les budgets, et l'on trouve sur la circulade tout ce qu'il faut au quotidien : boulangerie, boucher-traiteur, épicerie, pharmacie, tabac-presse et coiffeur. Une vingtaine de domaines viticoles entourent le village.",
+      "Caux est un village languedocien en circulade, niché au cœur des vignes, à 7 km de Pézenas et à quelques minutes des trois sorties de l'A75. Le clocher et les ruelles concentriques en sont les deux traits marquants.",
+      "Trois restaurants se partagent les styles et les budgets — Les Valseuses, bistro atypique ; Le Rex, restaurant traditionnel ; Tête d'Anchois, pizzeria fine — et l'on trouve sur la circulade tout ce qu'il faut au quotidien : boulangerie, boucher-traiteur, épicerie, pharmacie, tabac-presse et coiffeur. Une vingtaine de domaines viticoles entourent le village.",
     ],
     en: [
-      "Caux is a Languedoc circulade — a village of concentric streets — set among the vines, 7 km from Pézenas and minutes from the A75 exits. The bell tower and those ring-shaped lanes are what you notice first.",
-      "Three restaurants between them cover the range of styles and budgets, and the circulade has everything you need day to day: bakery, butcher and deli, grocer, pharmacy, newsagent and hairdresser. Some twenty wine estates surround the village.",
+      "Caux is a Languedoc circulade — a village of concentric streets — set among the vines, 7 km from Pézenas and minutes from the three A75 exits. The bell tower and those ring-shaped lanes are what you notice first.",
+      "Three restaurants between them cover the range of styles and budgets — Les Valseuses, an offbeat bistro; Le Rex, traditional cooking; Tête d'Anchois, fine pizza — and the circulade has everything you need day to day: bakery, butcher and deli, grocer, pharmacy, newsagent and hairdresser. Some twenty wine estates surround the village.",
     ],
   },
+  villageLiens: [
+    { t: "Les Valseuses", u: "https://www.facebook.com/Les-valseuses-2515782651789476/" },
+    { t: "Tête d'Anchois", u: "https://tetedanchois.fr" },
+    { t: "Mairie de Caux", u: "https://www.caux.fr" },
+  ],
   lieux: [
     {
       id: "pezenas",
       titre: { fr: "Pézenas", en: "Pézenas" },
       distance: { fr: "7 km · 10 minutes", en: "7 km · 10 minutes" },
-      image: "/images/cour-pavee.jpg",
+      image: "/images/pezenas-moliere.jpg",
+      alt: { fr: "Statue de Molière à Pézenas", en: "Statue of Molière in Pézenas" },
       texte: {
-        fr: "Ville de Molière, qui y fit ses armes avec l'Illustre Théâtre à partir de 1647. Son centre est un secteur sauvegardé : hôtels particuliers des XVIIᵉ et XVIIIᵉ siècles, cours intérieures, rues pavées. L'avenue de Verdun aligne les antiquaires et les brocanteurs — c'est là que nous chinons.",
-        en: "Molière's town, where he learned his trade with the Illustre Théâtre from 1647. The centre is a protected quarter: seventeenth- and eighteenth-century mansions, inner courtyards, cobbled streets. Avenue de Verdun is lined with antique dealers and brocante shops — this is where we do our hunting.",
+        fr: "Ville de Molière, qui y fit ses armes avec l'Illustre Théâtre à partir de 1647 et y puisa Dom Juan, Tartuffe ou Monsieur de Pourceaugnac. Son centre est un secteur sauvegardé : hôtels particuliers des XVIIᵉ et XVIIIᵉ siècles, cours intérieures, rues pavées, et une tradition théâtrale bien vivante — visites théâtralisées, compagnies en résidence. L'avenue de Verdun aligne les antiquaires et les brocanteurs ; nos deux adresses pour chiner : Bistro Canaille et Rétro Tendance.",
+        en: "Molière's town, where he learned his trade with the Illustre Théâtre from 1647 and found Dom Juan, Tartuffe and Monsieur de Pourceaugnac. The centre is a protected quarter: seventeenth- and eighteenth-century mansions, inner courtyards, cobbled streets, and a theatre tradition very much alive — dramatised tours, resident companies. Avenue de Verdun is lined with antique dealers and brocante shops; our two addresses for a hunt: Bistro Canaille and Rétro Tendance.",
       },
+      liens: [{ t: "Rétro Tendance", u: "https://www.antiquites-en-france.com" }],
     },
     {
       id: "salagou",
       titre: { fr: "Le lac du Salagou", en: "Lake Salagou" },
       distance: { fr: "30 km · 35 minutes", en: "30 km · 35 minutes" },
-      image: "/images/couloir-de-nage-oliviers.jpg",
+      image: "/images/lac-du-salagou.jpg",
+      alt: { fr: "Le lac du Salagou et ses rives de ruffe rouge", en: "Lake Salagou and its red ruffe shores" },
       texte: {
-        fr: "De l'eau au milieu d'une terre rouge : la ruffe, une roche ocre qui donne au lac ses couleurs improbables. Vingt-huit kilomètres de rives à parcourir à pied ou en VTT, des criques pour se baigner, et une lumière qui ne ressemble à aucune autre dans l'Hérault.",
-        en: "Water in the middle of red earth: ruffe, an ochre stone that gives the lake its improbable colours. Twenty-eight kilometres of shoreline to walk or ride, coves to swim from, and a light unlike anywhere else in the Hérault.",
+        fr: "De l'eau au milieu d'une terre rouge : la ruffe, une roche ocre qui donne au lac ses couleurs improbables, et une richesse géologique presque unique. Vingt-huit kilomètres de rives à parcourir à pied ou en VTT, des criques pour se baigner, des loisirs nautiques, et une lumière qui ne ressemble à aucune autre dans l'Hérault.",
+        en: "Water in the middle of red earth: ruffe, an ochre stone that gives the lake its improbable colours, and a geology almost without equal. Twenty-eight kilometres of shoreline to walk or ride, coves to swim from, water sports, and a light unlike anywhere else in the Hérault.",
+      },
+    },
+    {
+      id: "beziers",
+      titre: { fr: "Béziers", en: "Béziers" },
+      distance: { fr: "30 km · 35 minutes", en: "30 km · 35 minutes" },
+      texte: {
+        fr: "La plus ancienne ville de France avec Marseille, disent les fouilles. On y va pour le Pont Vieux et la cathédrale Saint-Nazaire qui dominent l'Orb, pour les neuf écluses de Fonseranes sur le canal du Midi — vingt et un mètres de dénivelé franchis en enfilade — et, à la mi-août, pour la féria.",
+        en: "The oldest town in France alongside Marseille, the digs say. You go for the Pont Vieux and the Saint-Nazaire cathedral above the Orb, for the nine Fonseranes locks on the Canal du Midi — twenty-one metres of drop taken in one staircase — and, in mid-August, for the feria.",
       },
     },
     {
       id: "plages",
       titre: { fr: "Les plages du Cap d'Agde et de Marseillan", en: "The beaches of Cap d'Agde and Marseillan" },
       distance: { fr: "25 km · 30 minutes", en: "25 km · 30 minutes" },
-      image: "/images/couloir-de-nage-transats.jpg",
+      image: "/images/cap-d-agde-vue-aerienne.jpg",
+      alt: { fr: "Le Cap d'Agde et son port vus du ciel", en: "Cap d'Agde and its marina from the air" },
       texte: {
-        fr: "Notre préférée, et de loin : la Grande Conque, une crique creusée dans la falaise volcanique, avec sa plage de sable noir et les rochers des Deux Frères. Pour du sable fin et de la place, Marseillan-Plage et ses six kilomètres, à vingt minutes de plus.",
-        en: "Our favourite by some distance: the Grande Conque, a cove cut into the volcanic cliff, with its black sand beach and the Deux Frères rocks. For fine sand and room to spread out, Marseillan-Plage and its six kilometres, twenty minutes further on.",
+        fr: "Rochelongue, la Tamarissière, le Môle, la Roquille, le Grau d'Agde, la baie de l'Amitié, Richelieu, la Plagette : les plages d'Agde vont de la sauvage à l'animée. Notre préférée, et de loin : la Grande Conque, une crique creusée dans la falaise volcanique, avec sa plage de sable noir et les rochers des Deux Frères. Pour du sable fin et de la place, Marseillan-Plage et ses six kilomètres, vingt minutes plus loin.",
+        en: "Rochelongue, La Tamarissière, Le Môle, La Roquille, Le Grau d'Agde, the Baie de l'Amitié, Richelieu, La Plagette: Agde's beaches run from wild to lively. Our favourite by some distance: the Grande Conque, a cove cut into the volcanic cliff, with its black sand beach and the Deux Frères rocks. For fine sand and room to spread out, Marseillan-Plage and its six kilometres, twenty minutes further on.",
       },
     },
     {
       id: "thau",
       titre: { fr: "Le bassin de Thau", en: "The Thau lagoon" },
       distance: { fr: "40 km · 45 minutes", en: "40 km · 45 minutes" },
-      image: "/images/cuve-fresque-detail.jpg",
+      image: "/images/bassin-de-thau-tables-ostreicoles.jpg",
+      alt: { fr: "Les tables ostréicoles sur l'étang de Thau", en: "Oyster tables on the Thau lagoon" },
       texte: {
-        fr: "Le plus grand plan d'eau d'Occitanie, une mer intérieure bordée de petits ports — Bouzigues, Mèze, Marseillan. Les tables ostréicoles y dessinent l'horizon comme un land art. On y va pour déguster des huîtres au bord de l'eau, chez les Demoiselles Dupuy à Bouzigues ou à l'Atelier & Co à Loupian.",
-        en: "The largest body of water in Occitanie, an inland sea ringed with small ports — Bouzigues, Mèze, Marseillan. The oyster tables draw the horizon like land art. You come here to eat oysters at the water's edge, at Les Demoiselles Dupuy in Bouzigues or Atelier & Co in Loupian.",
+        fr: "Le plus grand plan d'eau d'Occitanie, une mer intérieure bordée de petits ports — Marseillan, Mèze, Loupian, Bouzigues, Balaruc. Les tables ostréicoles y dessinent l'horizon comme un land art. On y va pour déguster des huîtres au bord de l'eau, dans les deux mas que nous aimons : les Demoiselles Dupuy à Bouzigues et l'Atelier & Co à Loupian.",
+        en: "The largest body of water in Occitanie, an inland sea ringed with small ports — Marseillan, Mèze, Loupian, Bouzigues, Balaruc. The oyster tables draw the horizon like land art. You come here to eat oysters at the water's edge, at the two farms we love: Les Demoiselles Dupuy in Bouzigues and Atelier & Co in Loupian.",
       },
+      liens: [
+        { t: "Les Demoiselles Dupuy", u: "https://lesdemoisellesdupuy.com" },
+        { t: "Atelier & Co", u: "https://ateliernco.com" },
+      ],
     },
     {
       id: "sete",
       titre: { fr: "Sète", en: "Sète" },
       distance: { fr: "45 km · 50 minutes", en: "45 km · 50 minutes" },
-      image: "/images/chai-fresque-petanque.jpg",
       texte: {
-        fr: "L'île singulière, comme l'appelait Valéry, qui y est né — Brassens aussi. Des canaux, un port de pêche en activité, le mont Saint-Clair au-dessus, et les joutes nautiques en été. On y monte pour la vue et on y redescend pour manger.",
-        en: "The singular island, as Valéry called it — he was born here, and so was Brassens. Canals, a working fishing port, Mont Saint-Clair above it all, and water jousting in summer. You climb up for the view and come back down to eat.",
+        fr: "L'île singulière, comme l'appelait Valéry, qui y est né — Brassens, Manitas de Plata et Jean Vilar aussi. La Venise du Languedoc pour ses canaux, un port de pêche en activité, le mont Saint-Clair au-dessus, et les joutes nautiques en été. On y monte pour la vue et on y redescend pour manger.",
+        en: "The singular island, as Valéry called it — he was born here, and so were Brassens, Manitas de Plata and Jean Vilar. The Venice of Languedoc for its canals, a working fishing port, Mont Saint-Clair above it all, and water jousting in summer. You climb up for the view and come back down to eat.",
       },
     },
     {
       id: "hauts-cantons",
       titre: { fr: "Les Hauts Cantons", en: "The Hauts Cantons" },
       distance: { fr: "40 km · 45 minutes", en: "40 km · 45 minutes" },
-      image: "/images/demeure-exterieur.jpg",
+      image: "/images/hauts-cantons.jpg",
+      alt: { fr: "Village perché des Hauts Cantons de l'Hérault", en: "Hilltop village in the Hérault's Hauts Cantons" },
       texte: {
-        fr: "L'arrière-pays, en moyenne montagne : le Caroux, l'Escandorgue, la Séranne, le sud du Larzac. Bédarieux en est la porte d'entrée. C'est le contrepoint de la plaine viticole — de la fraîcheur, des gorges, et des villages où il ne se passe rien.",
-        en: "The back country, in the low mountains: the Caroux, the Escandorgue, the Séranne, the southern Larzac. Bédarieux is the way in. It is the counterpoint to the vineyard plain — cool air, gorges, and villages where nothing happens.",
+        fr: "L'arrière-pays, en moyenne montagne : le Caroux et l'Espinouse, l'Escandorgue, la Séranne, le sud du Larzac. Bédarieux en est la capitale officieuse ; Lodève, Olargues, Le Caylar, Saint-Pons-de-Thomières en sont les étapes. C'est le contrepoint de la plaine viticole — de la fraîcheur, des gorges, et des villages où il ne se passe rien.",
+        en: "The back country, in the low mountains: the Caroux and Espinouse, the Escandorgue, the Séranne, the southern Larzac. Bédarieux is its unofficial capital; Lodève, Olargues, Le Caylar and Saint-Pons-de-Thomières the stops along the way. It is the counterpoint to the vineyard plain — cool air, gorges, and villages where nothing happens.",
       },
     },
-  ],
+  ] as Lieu[],
 };
 
 /* ------------------------------------------------------------------- CONTACT */

@@ -89,9 +89,6 @@ Oui. En direct, il n'y a pas de commission d'intermédiaire à payer : le prix a
 **Y a-t-il une piscine ?**
 Un couloir de nage en pierre, ouvert en saison. En hiver, ce sont les bains japonais qui prennent le relais.
 
-**Les animaux sont-ils acceptés ?**
-Non.
-
 Dernière mise à jour : ${new Date().toISOString().slice(0, 10)}
 `;
 

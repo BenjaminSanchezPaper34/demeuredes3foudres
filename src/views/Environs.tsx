@@ -5,6 +5,7 @@ import { ENVIRONS } from "@/content/pages";
 import { LIBELLES, UI } from "@/content/ui";
 import Hero from "@/components/Hero";
 import { Section, Kicker, Titre, Prose, Essentiel } from "@/components/Bloc";
+import { Icone } from "@/components/Icone";
 import { Bouton } from "@/components/Bouton";
 import { JsonLd, filAriane } from "@/components/JsonLd";
 
@@ -28,8 +29,8 @@ export default function Environs({ lang }: { lang: Lang }) {
         image="/images/demeure-exterieur.jpg"
         alt={
           lang === "fr"
-            ? "Le village de Caux au milieu des vignes, dans l'Hérault"
-            : "The village of Caux among the vineyards, in the Hérault"
+            ? "La Demeure des Trois Foudres vue de l'extérieur, à Caux"
+            : "Demeure des Trois Foudres seen from outside, in Caux"
         }
         kicker={lang === "fr" ? "Autour de la demeure" : "Around the house"}
         titre={ENVIRONS.titre[lang]}
@@ -46,6 +47,16 @@ export default function Environs({ lang }: { lang: Lang }) {
         <div className="mt-6">
           <Prose paragraphes={ENVIRONS.village[lang]} />
         </div>
+        <Liens liens={ENVIRONS.villageLiens} />
+        <div className="relative mt-10 aspect-[21/9] overflow-hidden bg-chaux" data-reveal>
+          <Image
+            src={ENVIRONS.villageImage}
+            alt={ENVIRONS.villageAlt[lang]}
+            fill
+            sizes="(max-width: 1152px) 100vw, 1152px"
+            className="object-cover"
+          />
+        </div>
       </Section>
 
       <Section fond="chaux">
@@ -58,28 +69,31 @@ export default function Environs({ lang }: { lang: Lang }) {
           {ENVIRONS.lieux.map((lieu, i) => (
             <article
               key={lieu.id}
-              className="grid gap-8 md:grid-cols-2 md:items-center md:gap-12"
+              className={`grid gap-8 md:items-center md:gap-12 ${lieu.image ? "md:grid-cols-2" : ""}`}
               data-reveal
             >
-              <div
-                className={`relative aspect-[4/3] overflow-hidden bg-pierre ${
-                  i % 2 ? "md:order-2" : ""
-                }`}
-              >
-                <Image
-                  src={lieu.image}
-                  alt={lieu.titre[lang]}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className={i % 2 ? "md:order-1" : ""}>
+              {lieu.image && (
+                <div
+                  className={`relative aspect-[2/1] overflow-hidden bg-pierre ${
+                    i % 2 ? "md:order-2" : ""
+                  }`}
+                >
+                  <Image
+                    src={lieu.image}
+                    alt={lieu.alt?.[lang] ?? lieu.titre[lang]}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div className={i % 2 && lieu.image ? "md:order-1" : ""}>
                 <p className="text-sm uppercase tracking-[0.14em] text-sauge">
                   {lieu.distance[lang]}
                 </p>
                 <h3 className="mt-2 font-display text-3xl">{lieu.titre[lang]}</h3>
                 <p className="mesure mt-4 text-lg leading-[1.7] text-taupe">{lieu.texte[lang]}</p>
+                <Liens liens={lieu.liens} />
               </div>
             </article>
           ))}
@@ -104,5 +118,27 @@ export default function Environs({ lang }: { lang: Lang }) {
         </div>
       </Section>
     </>
+  );
+}
+
+/** Adresses recommandées : liens sortants discrets, icône « externe », cible tactile. */
+function Liens({ liens }: { liens?: { t: string; u: string }[] }) {
+  if (!liens?.length) return null;
+  return (
+    <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-1">
+      {liens.map((l) => (
+        <li key={l.u}>
+          <a
+            href={l.u}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="lien inline-flex min-h-11 items-center gap-1.5 text-base text-lie"
+          >
+            {l.t}
+            <Icone nom="externe" taille={14} />
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 }

@@ -43,7 +43,6 @@ export function ficheEtablissement(lang: Lang) {
     geo: { "@type": "GeoCoordinates", latitude: SITE.geo.lat, longitude: SITE.geo.lng },
     hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adresseUneLigne)}`,
     image: [abs("/images/facade-demeure-caux.jpg"), abs("/images/bains-japonais-onsen.jpg")],
-    petsAllowed: false,
     numberOfRooms: LOGEMENTS.length,
     aggregateRating: {
       "@type": "AggregateRating",
