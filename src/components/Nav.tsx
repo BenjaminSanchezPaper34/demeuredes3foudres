@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
@@ -13,6 +12,7 @@ import { verrouScroll } from "@/lib/verrou";
 import { BoutonReserver } from "./Reservation";
 import { Icone } from "./Icone";
 import Marque from "./Marque";
+import LogoTexte from "./LogoTexte";
 import SelecteurLangue from "./SelecteurLangue";
 
 /**
@@ -55,15 +55,10 @@ export default function Nav({ lang }: { lang: Lang }) {
             aria-label={SITE.nom}
             className={`flex min-h-11 shrink-0 items-center transition-opacity hover:opacity-70 ${encre}`}
           >
+            {/* Au doigt le pictogramme ; au large le nom seul, version étroite
+                du logo — le logo complet (dessin + baseline) vit au pied de page. */}
             <Marque className="h-9 w-auto lg:hidden" />
-            <Image
-              src="/images/logo.svg"
-              alt={SITE.nom}
-              width={92}
-              height={53}
-              priority
-              className={`hidden h-12 w-auto lg:block ${defile ? "" : "brightness-0 invert"}`}
-            />
+            <LogoTexte className="hidden h-[26px] w-auto lg:block" />
           </Link>
 
           <nav className="ml-auto hidden items-center gap-5 lg:flex xl:gap-7">

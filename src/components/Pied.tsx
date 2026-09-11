@@ -19,7 +19,9 @@ export default function Pied({ lang }: { lang: Lang }) {
       <div className="mx-auto max-w-6xl px-5 pb-[calc(6.5rem+env(safe-area-inset-bottom))] pt-16 md:px-8 md:py-20 lg:pb-20">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <p className="font-display text-2xl">{SITE.nom}</p>
+            {/* Le logo complet — dessin, nom, baseline — a sa place ici, pas dans l'en-tête. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/logo-blanc.svg" alt={SITE.nom} width={199} height={115} className="h-24 w-auto" loading="lazy" />
             <p className="mt-3 text-base leading-relaxed text-pierre/70">{SITE.baseline[lang]}</p>
 
             <address className="mt-5 not-italic">
