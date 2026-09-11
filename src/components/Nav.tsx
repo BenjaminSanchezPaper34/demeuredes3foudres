@@ -81,7 +81,9 @@ export default function Nav({ lang }: { lang: Lang }) {
                 </Link>
               );
             })}
-            <BoutonReserver lang={lang} variante={defile ? "plein" : "clair"} libelle={UI.reserverCourt[lang]} />
+            {/* Sur la photo : filet Pierre, comme le CTA secondaire du hero. Une fois
+                la nav posée sur le fond clair : l'accent plein. */}
+            <BoutonReserver lang={lang} variante={defile ? "plein" : "voile"} libelle={UI.reserverCourt[lang]} />
             <SelecteurLangue lang={lang} sombre={!defile} />
           </nav>
 
