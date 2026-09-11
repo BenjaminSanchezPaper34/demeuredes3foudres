@@ -30,7 +30,8 @@ export default function Accueil({ lang }: { lang: Lang }) {
 
       <Hero
         volets
-        image="/images/facade-demeure-caux.jpg"
+        video={{ desktop: "/video/demeure-720.mp4", mobile: "/video/demeure-480.mp4" }}
+        image="/images/demeure-video-poster.jpg"
         alt={
           lang === "fr"
             ? "Façade de la Demeure des Trois Foudres à Caux, ses volets verts et sa cour pavée"
@@ -48,6 +49,45 @@ export default function Accueil({ lang }: { lang: Lang }) {
           </>
         }
       />
+
+      {/* Sous la vidéo : leurs mots, puis eux. C'est ce qui manquait au site. */}
+      <Section>
+        <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-16">
+          <div>
+            <Kicker>{ACCUEIL.hotes.kicker[lang]}</Kicker>
+            <p className="mesure font-display text-[clamp(1.35rem,2.4vw,1.75rem)] leading-[1.45] text-chene" data-reveal>
+              {ACCUEIL.motDesHotes[lang]}
+            </p>
+            <h2 className="mt-8 font-display text-2xl">{ACCUEIL.hotes.nom[lang]}</h2>
+            <p className="mesure mt-3 text-lg leading-[1.7] text-taupe" data-reveal>
+              {ACCUEIL.hotes.texte[lang]}
+            </p>
+          </div>
+          <div className="grid gap-3" data-reveal="stagger">
+            <div className="relative aspect-[7/4] overflow-hidden bg-chaux">
+              <Image
+                src="/images/agnes-et-jerome.jpg"
+                alt={ACCUEIL.hotes.altCouple[lang]}
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover"
+              />
+            </div>
+            <figure className="flex items-center gap-4">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden bg-chaux">
+                <Image
+                  src="/images/les-mascottes.jpg"
+                  alt={ACCUEIL.hotes.altMascottes[lang]}
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="text-base text-taupe">{ACCUEIL.hotes.mascottes[lang]}</figcaption>
+            </figure>
+          </div>
+        </div>
+      </Section>
 
       {/* Où, quoi, combien — puis la preuve. Rien ne doit être cherché. */}
       <Section fond="chaux" classe="!py-14 md:!py-16">
@@ -71,7 +111,7 @@ export default function Accueil({ lang }: { lang: Lang }) {
             <Kicker>{LIBELLES.laDemeure[lang]}</Kicker>
             <Titre>{ACCUEIL.introTitre[lang]}</Titre>
             <div className="mt-6">
-              <Prose paragraphes={ACCUEIL.intro[lang]} />
+              <Prose paragraphes={[ACCUEIL.intro[lang][1]]} />
             </div>
             <Bouton href={route("laDemeure", lang)} variante="ligne" fleche className="mt-8">
               {UI.enSavoirPlus[lang]}

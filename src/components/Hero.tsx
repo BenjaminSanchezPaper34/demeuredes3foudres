@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Icone } from "./Icone";
+import HeroVideo from "./HeroVideo";
 import type { ReactNode } from "react";
 
 /**
@@ -21,6 +22,7 @@ export default function Hero({
   actions,
   volets = false,
   hauteur = "plein",
+  video,
 }: {
   image: string;
   alt: string;
@@ -30,6 +32,8 @@ export default function Hero({
   actions?: ReactNode;
   volets?: boolean;
   hauteur?: "plein" | "reduit";
+  /** Fond vidéo : `image` devient alors le poster. */
+  video?: { desktop: string; mobile: string };
 }) {
   const classeHauteur =
     hauteur === "plein"
@@ -38,15 +42,19 @@ export default function Hero({
 
   return (
     <header className={`relative isolate flex items-end overflow-hidden ${classeHauteur}`}>
-      <Image
-        src={image}
-        alt={alt}
-        fill
-        priority
-        sizes="100vw"
-        quality={82}
-        className="-z-10 object-cover"
-      />
+      {video ? (
+        <HeroVideo poster={image} alt={alt} desktop={video.desktop} mobile={video.mobile} />
+      ) : (
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          priority
+          sizes="100vw"
+          quality={82}
+          className="-z-10 object-cover"
+        />
+      )}
       {/* Voile de lecture : le texte doit rester lisible quelle que soit la photo. */}
       <div
         aria-hidden

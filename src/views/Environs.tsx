@@ -6,6 +6,7 @@ import { LIBELLES, UI } from "@/content/ui";
 import Hero from "@/components/Hero";
 import { Section, Kicker, Titre, Prose, Essentiel } from "@/components/Bloc";
 import { Icone } from "@/components/Icone";
+import Logos from "@/components/Logos";
 import { Bouton } from "@/components/Bouton";
 import { JsonLd, filAriane } from "@/components/JsonLd";
 
@@ -47,7 +48,7 @@ export default function Environs({ lang }: { lang: Lang }) {
         <div className="mt-6">
           <Prose paragraphes={ENVIRONS.village[lang]} />
         </div>
-        <Liens liens={ENVIRONS.villageLiens} />
+        <Logos logos={ENVIRONS.villageLogos} className="mt-7" />
         <div className="relative mt-10 aspect-[21/9] overflow-hidden bg-chaux" data-reveal>
           <Image
             src={ENVIRONS.villageImage}
@@ -93,6 +94,7 @@ export default function Environs({ lang }: { lang: Lang }) {
                 </p>
                 <h3 className="mt-2 font-display text-3xl">{lieu.titre[lang]}</h3>
                 <p className="mesure mt-4 text-lg leading-[1.7] text-taupe">{lieu.texte[lang]}</p>
+                <Logos logos={lieu.logos} className="mt-5" />
                 <Liens liens={lieu.liens} />
               </div>
             </article>

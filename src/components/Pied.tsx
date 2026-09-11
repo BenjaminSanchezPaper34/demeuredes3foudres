@@ -93,6 +93,16 @@ export default function Pied({ lang }: { lang: Lang }) {
               </li>
             </ul>
 
+            <a
+              href="https://www.caux.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex min-h-11 items-center rounded-fin bg-pierre px-3 py-2 transition-opacity hover:opacity-85"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/logos/ville-de-caux.jpg" alt={lang === "fr" ? "Site officiel de la ville de Caux" : "Official website of the town of Caux"} className="h-7 w-auto" loading="lazy" />
+            </a>
+
             <div className="mt-6 flex gap-3">
               <a
                 href={SITE.reseaux.instagram}

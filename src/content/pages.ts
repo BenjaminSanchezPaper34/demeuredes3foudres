@@ -31,6 +31,22 @@ export const ACCUEIL = {
       "Swimming lane, two Japanese baths set in former wine vats, a wine hall turned reception room, a Napoleon III billiard table, bicycles and an EV charging point.",
     ],
   } as TL,
+  /** Le texte de l'ancien accueil, sous la vidéo — leurs mots, pas les nôtres. */
+  motDesHotes: {
+    fr: "Une belle Demeure, un chai viticole comportant Trois Foudres magnifiques, un coup de foudre pour le lieu. Un jardin, une cour majestueuse, une piscine pour l'été et des bains japonais pour l'hiver, des chambres confortables et originales… N'hésitez pas à venir à notre rencontre… Nous vous y attendons.",
+    en: "A beautiful house, a wine hall holding three magnificent tuns — love at first sight. A garden, a stately courtyard, a pool for summer and Japanese baths for winter, comfortable, original rooms… Come and meet us. We'll be waiting for you.",
+  } as T,
+  hotes: {
+    kicker: { fr: "Vos hôtes", en: "Your hosts" },
+    nom: { fr: "Agnès et Jérôme", en: "Agnès and Jérôme" },
+    texte: {
+      fr: "Nous avons restauré cette demeure pendant plus d'un an, et nous y vivons. C'est nous qui vous accueillons — et elles aussi.",
+      en: "We spent more than a year restoring this house, and we live here. We are the ones who welcome you — and so are they.",
+    },
+    mascottes: { fr: "Les mascottes de la maison", en: "The house mascots" },
+    altCouple: { fr: "Agnès et Jérôme, vos hôtes", en: "Agnès and Jérôme, your hosts" },
+    altMascottes: { fr: "Les deux chiens de la maison", en: "The house's two dogs" },
+  },
   introTitre: {
     fr: "Une demeure, un chai, trois foudres",
     en: "A house, a wine hall, three tuns",
@@ -210,6 +226,8 @@ export type Lieu = {
   texte: T;
   /** Adresses recommandées par les propriétaires — c'est la valeur de cette page. */
   liens?: { t: string; u: string }[];
+  /** Logos récupérés de l'ancien site, liés quand un site existe. */
+  logos?: { src: string; alt: string; href?: string; sombre?: boolean }[];
 };
 
 export const ENVIRONS = {
@@ -245,10 +263,11 @@ export const ENVIRONS = {
       "Three restaurants between them cover the range of styles and budgets — Les Valseuses, an offbeat bistro; Le Rex, traditional cooking; Tête d'Anchois, fine pizza — and the circulade has everything you need day to day: bakery, butcher and deli, grocer, pharmacy, newsagent and hairdresser. Some twenty wine estates surround the village.",
     ],
   },
-  villageLiens: [
-    { t: "Les Valseuses", u: "https://www.facebook.com/Les-valseuses-2515782651789476/" },
-    { t: "Tête d'Anchois", u: "https://tetedanchois.fr" },
-    { t: "Mairie de Caux", u: "https://www.caux.fr" },
+  villageLogos: [
+    { src: "/images/logos/les-valseuses.jpg", alt: "Les Valseuses, bistro à Caux", href: "https://www.facebook.com/Les-valseuses-2515782651789476/" },
+    { src: "/images/logos/mdl-matthieu-delauzun.jpg", alt: "MDL, Matthieu Delauzun, le bistrot", href: "https://www.facebook.com/profile.php?id=100087969219959" },
+    { src: "/images/logos/tete-d-anchois.png", alt: "Tête d'Anchois, pizzeria-restaurant à Caux", href: "https://tetedanchois.fr" },
+    { src: "/images/logos/ville-de-caux.jpg", alt: "Site officiel de la ville de Caux", href: "https://www.caux.fr" },
   ],
   lieux: [
     {
@@ -261,7 +280,10 @@ export const ENVIRONS = {
         fr: "Ville de Molière, qui y fit ses armes avec l'Illustre Théâtre à partir de 1647 et y puisa Dom Juan, Tartuffe ou Monsieur de Pourceaugnac. Son centre est un secteur sauvegardé : hôtels particuliers des XVIIᵉ et XVIIIᵉ siècles, cours intérieures, rues pavées, et une tradition théâtrale bien vivante — visites théâtralisées, compagnies en résidence. L'avenue de Verdun aligne les antiquaires et les brocanteurs ; nos deux adresses pour chiner : Bistro Canaille et Rétro Tendance.",
         en: "Molière's town, where he learned his trade with the Illustre Théâtre from 1647 and found Dom Juan, Tartuffe and Monsieur de Pourceaugnac. The centre is a protected quarter: seventeenth- and eighteenth-century mansions, inner courtyards, cobbled streets, and a theatre tradition very much alive — dramatised tours, resident companies. Avenue de Verdun is lined with antique dealers and brocante shops; our two addresses for a hunt: Bistro Canaille and Rétro Tendance.",
       },
-      liens: [{ t: "Rétro Tendance", u: "https://www.antiquites-en-france.com" }],
+      logos: [
+        { src: "/images/logos/antiquites-en-france.jpg", alt: "Antiquités en France", href: "https://www.antiquites-en-france.com" },
+        { src: "/images/logos/retro-tendance.jpg", alt: "Rétro Tendance, mobilier et décoration vintage à Pézenas", href: "https://www.antiquites-en-france.com" },
+      ],
     },
     {
       id: "salagou",
@@ -278,6 +300,9 @@ export const ENVIRONS = {
       id: "beziers",
       titre: { fr: "Béziers", en: "Béziers" },
       distance: { fr: "30 km · 35 minutes", en: "30 km · 35 minutes" },
+      image: "/images/beziers.jpg",
+      alt: { fr: "Béziers, le Pont Vieux et la cathédrale Saint-Nazaire au-dessus de l'Orb", en: "Béziers, the Pont Vieux and Saint-Nazaire cathedral above the Orb" },
+      logos: [{ src: "/images/logos/beziers.png", alt: "Ville de Béziers" }],
       texte: {
         fr: "La plus ancienne ville de France avec Marseille, disent les fouilles. On y va pour le Pont Vieux et la cathédrale Saint-Nazaire qui dominent l'Orb, pour les neuf écluses de Fonseranes sur le canal du Midi — vingt et un mètres de dénivelé franchis en enfilade — et, à la mi-août, pour la féria.",
         en: "The oldest town in France alongside Marseille, the digs say. You go for the Pont Vieux and the Saint-Nazaire cathedral above the Orb, for the nine Fonseranes locks on the Canal du Midi — twenty-one metres of drop taken in one staircase — and, in mid-August, for the feria.",
@@ -304,15 +329,18 @@ export const ENVIRONS = {
         fr: "Le plus grand plan d'eau d'Occitanie, une mer intérieure bordée de petits ports — Marseillan, Mèze, Loupian, Bouzigues, Balaruc. Les tables ostréicoles y dessinent l'horizon comme un land art. On y va pour déguster des huîtres au bord de l'eau, dans les deux mas que nous aimons : les Demoiselles Dupuy à Bouzigues et l'Atelier & Co à Loupian.",
         en: "The largest body of water in Occitanie, an inland sea ringed with small ports — Marseillan, Mèze, Loupian, Bouzigues, Balaruc. The oyster tables draw the horizon like land art. You come here to eat oysters at the water's edge, at the two farms we love: Les Demoiselles Dupuy in Bouzigues and Atelier & Co in Loupian.",
       },
-      liens: [
-        { t: "Les Demoiselles Dupuy", u: "https://lesdemoisellesdupuy.com" },
-        { t: "Atelier & Co", u: "https://ateliernco.com" },
+      logos: [
+        { src: "/images/logos/les-demoiselles-dupuy.jpg", alt: "Les Demoiselles Dupuy, dégustation de coquillages à Bouzigues", href: "https://lesdemoisellesdupuy.com" },
+        { src: "/images/logos/atelier-and-co.svg", alt: "Atelier & Co, dégustation d'huîtres à Loupian", href: "https://ateliernco.com", sombre: true },
       ],
     },
     {
       id: "sete",
       titre: { fr: "Sète", en: "Sète" },
       distance: { fr: "45 km · 50 minutes", en: "45 km · 50 minutes" },
+      image: "/images/sete.jpg",
+      alt: { fr: "Sète, ses canaux et son port", en: "Sète, its canals and its port" },
+      logos: [{ src: "/images/logos/sete.png", alt: "Ville de Sète" }],
       texte: {
         fr: "L'île singulière, comme l'appelait Valéry, qui y est né — Brassens, Manitas de Plata et Jean Vilar aussi. La Venise du Languedoc pour ses canaux, un port de pêche en activité, le mont Saint-Clair au-dessus, et les joutes nautiques en été. On y monte pour la vue et on y redescend pour manger.",
         en: "The singular island, as Valéry called it — he was born here, and so were Brassens, Manitas de Plata and Jean Vilar. The Venice of Languedoc for its canals, a working fishing port, Mont Saint-Clair above it all, and water jousting in summer. You climb up for the view and come back down to eat.",
