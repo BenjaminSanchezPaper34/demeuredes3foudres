@@ -19,8 +19,15 @@ export const LIBELLES: Record<RouteKey, T> = {
   confidentialite: { fr: "Confidentialité", en: "Privacy" },
 };
 
+/** Libellés courts propres à la barre de navigation, quand le titre de page est trop long. */
+export const LIBELLES_NAV: Partial<Record<RouteKey, T>> = {
+  environs: { fr: "Activités", en: "Things to do" },
+};
+
 export const UI = {
   reserver: { fr: "Réserver en direct", en: "Book direct" },
+  /** Bouton de la nav : court, pour ne pas doubler « Voir les disponibilités » du hero. */
+  reserverCourt: { fr: "Réserver", en: "Book" },
   voirDisponibilites: { fr: "Voir les disponibilités", en: "Check availability" },
   decouvrir: { fr: "Découvrir", en: "Discover" },
   enSavoirPlus: { fr: "En savoir plus", en: "Find out more" },

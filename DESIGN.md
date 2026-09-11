@@ -58,7 +58,7 @@ Contrastes vérifiés : Chêne/Pierre 15:1 · Taupe/Pierre 6,3:1 · Lie/Pierre 7
 
 ## 3. Matière
 
-- **Rayons** : 2px sur les boutons et les champs, 3px sur les encadrés. **0 sur les images.** Les photos sont des rectangles nets, comme des tirages posés sur la page — un coin arrondi sur une photo d'architecture, c'est la signature du template.
+- **Rayons** : **boutons en capsule** (`--radius-bouton: 9999px`, décision de Benjamin le 11/09/2026 — elle renverse l'interdit initial « pas de pill »), 2px sur les champs, 3px sur les encadrés et tuiles. **0 sur les images.** Les photos sont des rectangles nets, comme des tirages posés sur la page — un coin arrondi sur une photo d'architecture, c'est la signature du template.
 - **Ombres** : **teintées chêne brûlé**, jamais grises. `0 1px 2px rgba(36,28,21,.06)`, `0 12px 32px rgba(36,28,21,.10)` au survol des cartes. Une ombre grise neutre sur un fond beige vire au bleu sale.
 - **Filets** : 1px Sauge à 40% — c'est le séparateur par défaut du site, avant toute carte et toute ombre.
 - **Espacements** : sections `py-20` mobile / `py-32` desktop. Colonne de texte courant plafonnée à 62ch. Grilles `gap-6` / `gap-10`.
@@ -84,7 +84,6 @@ Contrastes vérifiés : Chêne/Pierre 15:1 · Taupe/Pierre 6,3:1 · Lie/Pierre 7
 - **Pas de glassmorphism**, pas de flou d'arrière-plan.
 - **L'accent Lie de vin n'est jamais un fond de section**, et n'apparaît jamais sur fond sombre.
 - **Sauge ne porte jamais de texte** ni de CTA.
-- **Pas de boutons pill.** Le rayon 9999px est la signature visuelle du SaaS ; cette maison a 150 ans.
 - **Pas de coins arrondis sur les photos.**
 - **Aucune photo en noir et blanc.** Tout l'argument du lieu tient dans la couleur de ses matières : la chaux ocre, le vert des volets, le cuir fauve, le vert olive du canapé du Grenier. Les désaturer, c'est supprimer le produit.
 - **Pas de carrousel automatique.** Les galeries défilent au geste ou au clic. Une photo qui part toute seule est une photo que le visiteur n'a pas choisi de regarder.
@@ -106,10 +105,11 @@ Contrastes vérifiés : Chêne/Pierre 15:1 · Taupe/Pierre 6,3:1 · Lie/Pierre 7
 
 - **Icônes maison** (`src/components/Icone.tsx`, tracés dans `icones/traces.json`) : géométriques et sobres, grille 24, trait 1,5 px, bouts ronds, couleur héritée du texte. 43 icônes en six familles (navigation, contact, preuve, équipements, lieu, réseaux). **Plus aucune icône de bibliothèque sur le site.** Le lien au logo passe par le motif des trois foudres — bouton menu mobile, ornement devant chaque kicker de section, puce du hero — jamais par une imitation du trait à main levée.
 - **Pictogramme** (`Marque.tsx`) : les trois foudres extraits du logo, seuls, en logo mobile. Le nom en toutes lettres est illisible sous 40 px de haut.
-- **CTA** : 52 px de haut et pleine largeur au doigt, 44 px et largeur au contenu à partir de `sm`. Quatre variantes et pas une de plus : `plein` (lie-de-vin, fonds clairs), `ligne`, `clair` (Pierre sur Ardoise et sur photo), `voile` (filet Pierre sur photo). Flèche qui avance sur les actions qui mènent quelque part ; contraction à 0,98 à l'appui.
+- **CTA** : en capsule (11/09/2026), 52 px de haut et pleine largeur au doigt, 44 px et largeur au contenu à partir de `sm`. Bouton de nav « Réserver » (court) pour ne pas doubler « Voir les disponibilités » du hero. Quatre variantes et pas une de plus : `plein` (lie-de-vin, fonds clairs), `ligne`, `clair` (Pierre sur Ardoise et sur photo), `voile` (filet Pierre sur photo). Flèche qui avance sur les actions qui mènent quelque part ; contraction à 0,98 à l'appui.
 - **Barre de réservation fixe, mobile** : disponibilités + téléphone, apparaît une fois 60 % de la hauteur d'écran défilés, s'efface quand le tiroir Smoobu est ouvert. Fond Ardoise, donc CTA inversé en Pierre. Safe area respectée, réserve de 6,5 rem sous le pied de page.
 - **Équipements** en tuiles icône + libellé, deux colonnes au doigt.
 - **Formulaire** : champs 48 px, corps 16 px — pas de zoom iOS.
+- **Nav** : six entrées — La demeure, Les chambres, Bains japonais, Le chai, **Activités** (→ Caux et ses environs), Tarifs — puis Réserver, puis la langue.
 - **Sélecteur de langue** (décision du 10/09/2026, révisée le même jour) : icône globe + code de la langue cible (« EN »), **après le CTA de réservation, dernier élément de la nav**. Un seul lien, vers la page équivalente. La variante « FR / EN » reste disponible dans le composant.
 - **Configurateur de logement** (`/chambres`, sous la photo) : trois questions en cases radio rectangulaires (rayon 2 px, jamais de pill), la suggestion en encadré filet lie-de-vin, immobile une fois affichée — c'est une réponse, pas un effet. Les règles de score vivent dans `content/configurateur.ts`, pas dans le composant.
 - **Preuve** : la note Google et, en texte à côté, le 9,7/10 des Booking.com Traveller Review Awards 2023 — **jamais le logo Booking**, la marque n'a pas sa place sur un site dont l'argument est de s'en passer.

@@ -99,7 +99,7 @@ export default function Galerie({ photos, lang }: { photos: Photo[]; lang: Lang 
               <button
                 onClick={() => bouger(-1)}
                 aria-label={UI.precedent[lang]}
-                className="flex h-12 w-12 items-center justify-center rounded-fin border border-pierre/25 text-pierre"
+                className="flex h-12 w-12 items-center justify-center rounded-bouton border border-pierre/25 text-pierre"
               >
                 <Icone nom="chevron-gauche" taille={22} />
               </button>
@@ -107,7 +107,7 @@ export default function Galerie({ photos, lang }: { photos: Photo[]; lang: Lang 
               <button
                 onClick={() => bouger(1)}
                 aria-label={UI.suivant[lang]}
-                className="flex h-12 w-12 items-center justify-center rounded-fin border border-pierre/25 text-pierre"
+                className="flex h-12 w-12 items-center justify-center rounded-bouton border border-pierre/25 text-pierre"
               >
                 <Icone nom="chevron-droite" taille={22} />
               </button>

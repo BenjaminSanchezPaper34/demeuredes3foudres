@@ -59,11 +59,12 @@ export const NAV: RouteKey[] = [
   "chambres",
   "bainsJaponais",
   "leChai",
+  "environs",
   "tarifs",
 ];
 
 /** Liens du pied de page, en deux colonnes. */
-export const NAV_PIED: RouteKey[] = ["acces", "environs", "contact"];
+export const NAV_PIED: RouteKey[] = ["acces", "contact"];
 
 /**
  * Chemin équivalent dans l'autre langue.

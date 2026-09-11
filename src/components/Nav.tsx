@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { track } from "@vercel/analytics";
 import { SITE, type Lang } from "@/lib/site";
 import { NAV, route } from "@/lib/routes";
-import { LIBELLES, UI } from "@/content/ui";
+import { LIBELLES, LIBELLES_NAV, UI } from "@/content/ui";
 import { verrouScroll } from "@/lib/verrou";
 import { BoutonReserver } from "./Reservation";
 import { Icone } from "./Icone";
@@ -66,22 +66,22 @@ export default function Nav({ lang }: { lang: Lang }) {
             />
           </Link>
 
-          <nav className="ml-auto hidden items-center gap-7 lg:flex">
+          <nav className="ml-auto hidden items-center gap-5 lg:flex xl:gap-7">
             {NAV.map((cle) => {
               const href = route(cle, lang);
               return (
                 <Link
                   key={cle}
                   href={href}
-                  className={`lien text-base transition-colors ${encre} ${
+                  className={`lien text-sm transition-colors xl:text-base ${encre} ${
                     actif(href) ? "!text-lie" : "hover:text-lie"
                   }`}
                 >
-                  {LIBELLES[cle][lang]}
+                  {(LIBELLES_NAV[cle] ?? LIBELLES[cle])[lang]}
                 </Link>
               );
             })}
-            <BoutonReserver lang={lang} variante={defile ? "plein" : "clair"} />
+            <BoutonReserver lang={lang} variante={defile ? "plein" : "clair"} libelle={UI.reserverCourt[lang]} />
             <SelecteurLangue lang={lang} sombre={!defile} />
           </nav>
 
@@ -132,7 +132,7 @@ export default function Nav({ lang }: { lang: Lang }) {
             </div>
 
             <nav className="relative z-10 flex flex-1 flex-col justify-center px-6 pb-8">
-              {NAV.concat("acces", "environs", "contact").map((cle, i) => {
+              {NAV.concat("acces", "contact").map((cle, i) => {
                 const href = route(cle, lang);
                 return (
                   <Link
@@ -162,7 +162,7 @@ export default function Nav({ lang }: { lang: Lang }) {
               </div>
 
               <div className="mt-5">
-                <BoutonReserver lang={lang} variante="clair" pleineLargeur fleche />
+                <BoutonReserver lang={lang} variante="clair" pleineLargeur fleche libelle={UI.reserverCourt[lang]} />
               </div>
             </nav>
           </motion.div>

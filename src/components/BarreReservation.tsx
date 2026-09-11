@@ -55,7 +55,7 @@ export default function BarreReservation({ lang }: { lang: Lang }) {
           aria-label={UI.appeler[lang]}
           onClick={() => track("tel", { depuis: "barre" })}
           tabIndex={visible ? 0 : -1}
-          className="flex h-13 w-13 shrink-0 items-center justify-center rounded-fin border border-pierre/30 text-pierre transition-colors active:bg-pierre/10"
+          className="flex h-13 w-13 shrink-0 items-center justify-center rounded-bouton border border-pierre/30 text-pierre transition-colors active:bg-pierre/10"
         >
           <Icone nom="telephone" taille={22} />
         </a>

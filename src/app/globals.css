@@ -40,6 +40,7 @@
 
   --radius-fin: 2px;
   --radius-bloc: 3px;
+  --radius-bouton: 9999px; /* boutons en capsule — décision du 11/09/2026 */
 
   --shadow-pose: 0 1px 2px rgb(36 28 21 / 0.06);
   --shadow-leve: 0 12px 32px rgb(36 28 21 / 0.1);

@@ -31,7 +31,7 @@ export default function SelecteurLangue({
         hrefLang={autre}
         lang={autre}
         aria-label={lang === "fr" ? "Read in English" : "Lire en français"}
-        className={`inline-flex min-h-11 items-center gap-1.5 rounded-fin px-2 text-sm font-medium tracking-[0.14em] transition-colors ${
+        className={`inline-flex min-h-11 items-center gap-1.5 rounded-bouton px-2 text-sm font-medium tracking-[0.14em] transition-colors ${
           sombre ? "text-pierre/85 hover:text-pierre" : "text-chene hover:text-lie"
         }`}
       >

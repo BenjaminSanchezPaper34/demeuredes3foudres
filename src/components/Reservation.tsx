@@ -208,13 +208,13 @@ function Repli({ lang }: { lang: Lang }) {
         <a
           href={`tel:${SITE.telephone}`}
           onClick={() => track("tel", { depuis: "tiroir" })}
-          className="inline-flex min-h-11 items-center gap-2 rounded-fin border border-chene/25 px-4 text-base transition-colors hover:border-lie hover:text-lie"
+          className="inline-flex min-h-11 items-center gap-2 rounded-bouton border border-chene/25 px-4 text-base transition-colors hover:border-lie hover:text-lie"
         >
           <Icone nom="telephone" taille={18} /> {SITE.telephoneAffiche}
         </a>
         <a
           href={`mailto:${SITE.email}`}
-          className="inline-flex min-h-11 items-center gap-2 rounded-fin border border-chene/25 px-4 text-base transition-colors hover:border-lie hover:text-lie"
+          className="inline-flex min-h-11 items-center gap-2 rounded-bouton border border-chene/25 px-4 text-base transition-colors hover:border-lie hover:text-lie"
         >
           <Icone nom="mail" taille={18} /> {UI.ecrire[lang]}
         </a>

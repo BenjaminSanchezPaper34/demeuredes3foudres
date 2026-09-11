@@ -24,7 +24,7 @@ const STYLES: Record<Variante, string> = {
 };
 
 const BASE =
-  "group inline-flex min-h-13 items-center justify-center gap-2.5 rounded-fin px-6 py-3 text-base font-medium transition-all duration-300 hover:shadow-leve active:scale-[0.98] active:shadow-none sm:min-h-11";
+  "group inline-flex min-h-13 items-center justify-center gap-2.5 rounded-bouton px-6 py-3 text-base font-medium transition-all duration-300 hover:shadow-leve active:scale-[0.98] active:shadow-none sm:min-h-11";
 
 type Commun = {
   children: ReactNode;

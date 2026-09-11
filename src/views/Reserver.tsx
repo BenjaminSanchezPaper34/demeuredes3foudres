@@ -68,7 +68,7 @@ export default function Reserver({ lang }: { lang: Lang }) {
             </p>
             <LienTelephone
               depuis="reserver"
-              className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-fin border border-chene/25 px-6 text-base transition-colors hover:border-lie hover:text-lie"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-bouton border border-chene/25 px-6 text-base transition-colors hover:border-lie hover:text-lie"
             >
               {SITE.telephoneAffiche}
             </LienTelephone>

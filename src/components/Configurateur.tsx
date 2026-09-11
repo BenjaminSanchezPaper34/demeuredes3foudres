@@ -71,7 +71,7 @@ export default function Configurateur({ lang }: { lang: Lang }) {
                   return (
                     <label
                       key={o.id}
-                      className={`inline-flex min-h-11 cursor-pointer items-center rounded-fin border px-4 py-2 text-base transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-lie ${
+                      className={`inline-flex min-h-11 cursor-pointer items-center rounded-bouton border px-4 py-2 text-base transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-lie ${
                         actif
                           ? "border-lie bg-lie text-pierre"
                           : "border-chene/25 bg-pierre text-chene hover:border-lie hover:text-lie"

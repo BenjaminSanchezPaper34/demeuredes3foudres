@@ -97,7 +97,7 @@ export default function Pied({ lang }: { lang: Lang }) {
               href="https://www.caux.fr"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex min-h-11 items-center rounded-fin bg-pierre px-3 py-2 transition-opacity hover:opacity-85"
+              className="mt-6 inline-flex min-h-11 items-center rounded-bloc bg-pierre px-3 py-2 transition-opacity hover:opacity-85"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/images/logos/ville-de-caux.jpg" alt={lang === "fr" ? "Site officiel de la ville de Caux" : "Official website of the town of Caux"} className="h-7 w-auto" loading="lazy" />
@@ -109,7 +109,7 @@ export default function Pied({ lang }: { lang: Lang }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-11 w-11 items-center justify-center rounded-fin border border-pierre/20 text-pierre/75 transition-colors hover:border-pierre hover:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-bouton border border-pierre/20 text-pierre/75 transition-colors hover:border-pierre hover:text-white"
               >
                 <Icone nom="instagram" taille={20} />
               </a>
@@ -118,7 +118,7 @@ export default function Pied({ lang }: { lang: Lang }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="flex h-11 w-11 items-center justify-center rounded-fin border border-pierre/20 text-pierre/75 transition-colors hover:border-pierre hover:text-white"
+                className="flex h-11 w-11 items-center justify-center rounded-bouton border border-pierre/20 text-pierre/75 transition-colors hover:border-pierre hover:text-white"
               >
                 <Icone nom="facebook" taille={20} />
               </a>

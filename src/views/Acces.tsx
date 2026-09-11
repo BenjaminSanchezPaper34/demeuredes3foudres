@@ -80,12 +80,12 @@ export default function Acces({ lang }: { lang: Lang }) {
               {SITE.adresse.codePostal} {SITE.adresse.ville}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <LienItineraire className="inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-fin bg-lie px-6 text-base font-medium text-pierre transition-all duration-300 hover:bg-lie-clair hover:shadow-leve active:scale-[0.98] sm:min-h-11 sm:w-auto">
+              <LienItineraire className="inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-bouton bg-lie px-6 text-base font-medium text-pierre transition-all duration-300 hover:bg-lie-clair hover:shadow-leve active:scale-[0.98] sm:min-h-11 sm:w-auto">
                 <Icone nom="itineraire" taille={18} /> {UI.itineraire[lang]}
               </LienItineraire>
               <LienTelephone
                 depuis="acces"
-                className="inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-fin border border-chene/25 px-6 text-base transition-colors hover:border-lie hover:text-lie active:scale-[0.98] sm:min-h-11 sm:w-auto"
+                className="inline-flex min-h-13 w-full items-center justify-center gap-2.5 rounded-bouton border border-chene/25 px-6 text-base transition-colors hover:border-lie hover:text-lie active:scale-[0.98] sm:min-h-11 sm:w-auto"
               >
                 <Icone nom="telephone" taille={18} /> {SITE.telephoneAffiche}
               </LienTelephone>
