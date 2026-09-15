@@ -1,5 +1,4 @@
 import type { Lang } from "@/lib/site";
-import { SITE } from "@/lib/site";
 import { route, urlLogement } from "@/lib/routes";
 import { LOGEMENTS } from "@/content/logements";
 import { LIBELLES, UI } from "@/content/ui";
@@ -8,10 +7,10 @@ import { Section, Kicker, Titre, Essentiel, Filet } from "@/components/Bloc";
 import { Bouton } from "@/components/Bouton";
 import { BoutonReserver } from "@/components/Reservation";
 import { PrixDirect } from "@/components/Reassurance";
-import { LienTelephone } from "@/components/Traces";
 import { JsonLd, faq, filAriane } from "@/components/JsonLd";
 import { smoobuConfigure, lireTarifs, synthetiser, jour } from "@/lib/smoobu";
 import { CONDITIONS_TEXTES, CONDITIONS_FAQ } from "@/content/conditions";
+import { TARIFS, prixMini, formatePrix } from "@/content/tarifs";
 import { Icone } from "@/components/Icone";
 
 /**
@@ -31,16 +30,17 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
   const ids = LOGEMENTS.map((l) => l.smoobuId).filter((i): i is number => i !== null);
   const tarifs = ids.length ? await lireTarifs(ids, jour(), jour(365)) : null;
   const syntheses = synthetiser(tarifs, ids);
-  const enLigne = smoobuConfigure() && syntheses.length > 0;
+  // L'API est lue dès qu'elle est configurée ; /controle compare ses valeurs
+  // à la grille validée. L'affichage ci-dessous reste la grille tant que
+  // Smoobu n'est pas branché.
+  void syntheses;
 
   const questions =
     lang === "fr"
       ? [
           {
             q: "Combien coûte une nuit à la Demeure des Trois Foudres ?",
-            r: enLigne
-              ? "Les tarifs varient selon le logement et la saison. Le détail par logement et par date est affiché sur cette page et dans le calendrier de réservation."
-              : "Les tarifs varient selon le logement et la saison. Contactez-nous au 07 77 23 46 80 pour connaître le tarif de vos dates.",
+            r: `De ${formatePrix(prixMini("lingerie"), "fr")} à ${formatePrix(TARIFS.saisons[2].prix.lingerie, "fr")} la nuit pour La Lingerie, ${formatePrix(prixMini("ecurie"), "fr")} à ${formatePrix(TARIFS.saisons[2].prix.ecurie, "fr")} pour L'Écurie, et ${formatePrix(prixMini("grenier"), "fr")} à ${formatePrix(TARIFS.saisons[2].prix.grenier, "fr")} pour l'appartement Le Grenier, selon la saison. Petit-déjeuner en option à ${formatePrix(TARIFS.petitDejeuner.prix, "fr")} par personne et par jour.`,
           },
           {
             q: "Est-ce moins cher de réserver en direct ?",
@@ -55,9 +55,7 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
       : [
           {
             q: "How much is a night at Demeure des Trois Foudres?",
-            r: enLigne
-              ? "Rates vary by accommodation and season. The detail per place and per date is shown on this page and in the booking calendar."
-              : "Rates vary by accommodation and season. Call us on +33 7 77 23 46 80 for a rate on your dates.",
+            r: `From ${formatePrix(prixMini("lingerie"), "en")} to ${formatePrix(TARIFS.saisons[2].prix.lingerie, "en")} a night for the Linen Room, ${formatePrix(prixMini("ecurie"), "en")} to ${formatePrix(TARIFS.saisons[2].prix.ecurie, "en")} for the Stable, and ${formatePrix(prixMini("grenier"), "en")} to ${formatePrix(TARIFS.saisons[2].prix.grenier, "en")} for the Attic apartment, depending on the season. Breakfast optional at ${formatePrix(TARIFS.petitDejeuner.prix, "en")} per person per day.`,
           },
           {
             q: "Is it cheaper to book direct?",
@@ -106,16 +104,12 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
             lang === "fr"
               ? [
                   "Trois logements : deux chambres pour 2 personnes et un appartement pour 4.",
-                  enLigne
-                    ? "Tarifs et durée minimum de séjour affichés ci-dessous, tenus à jour automatiquement."
-                    : "Tarifs communiqués par téléphone au 07 77 23 46 80 ou par email — l'affichage en ligne arrive prochainement.",
+                  `À partir de ${formatePrix(prixMini("lingerie"), "fr")} la nuit pour deux, petit-déjeuner en option à ${formatePrix(TARIFS.petitDejeuner.prix, "fr")} par personne.`,
                   "Réservation en direct : pas de commission d'intermédiaire.",
                 ]
               : [
                   "Three places to stay: two rooms for 2 guests and an apartment for 4.",
-                  enLigne
-                    ? "Rates and minimum stay shown below, kept up to date automatically."
-                    : "Rates on request by phone on +33 7 77 23 46 80 or by email — online display coming shortly.",
+                  `From ${formatePrix(prixMini("lingerie"), "en")} a night for two, breakfast optional at ${formatePrix(TARIFS.petitDejeuner.prix, "en")} per person.`,
                   "Book direct: no platform commission.",
                 ]
           }
@@ -129,96 +123,69 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
         </Titre>
 
         {/* Le tableau ne bouge pas : ce que le visiteur doit croire reste
-            immobile (DESIGN.md §4). Aucun data-reveal ici, volontairement. */}
+            immobile (DESIGN.md §4). Aucun data-reveal ici, volontairement.
+            Les prix viennent de la grille validée ; quand l'API Smoobu est
+            branchée, elle prend le relais et /controle signale tout écart. */}
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[540px] border-collapse text-left">
+          <table className="w-full min-w-[620px] border-collapse text-left">
+            <caption className="sr-only">
+              {lang === "fr"
+                ? "Tarifs par nuit et par logement, selon la saison"
+                : "Rates per night and per accommodation, by season"}
+            </caption>
             <thead>
               <tr className="border-b border-sauge/60">
-                <th className="py-3 pr-4 text-sm font-semibold uppercase tracking-[0.14em] text-taupe">
+                <th scope="col" className="py-3 pr-4 text-sm font-semibold uppercase tracking-[0.14em] text-taupe">
                   {lang === "fr" ? "Logement" : "Accommodation"}
                 </th>
-                <th className="py-3 pr-4 text-sm font-semibold uppercase tracking-[0.14em] text-taupe">
-                  {lang === "fr" ? "Capacité" : "Sleeps"}
-                </th>
-                <th className="py-3 pr-4 text-sm font-semibold uppercase tracking-[0.14em] text-taupe">
-                  {lang === "fr" ? "Nuits minimum" : "Minimum stay"}
-                </th>
-                <th className="py-3 text-sm font-semibold uppercase tracking-[0.14em] text-taupe">
-                  {lang === "fr" ? "À partir de" : "From"}
-                </th>
+                {TARIFS.saisons.map((saison) => (
+                  <th
+                    key={saison.id}
+                    scope="col"
+                    className="py-3 pr-4 text-sm font-semibold uppercase tracking-[0.14em] text-taupe"
+                  >
+                    {saison.libelle[lang]}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              {LOGEMENTS.map((l) => {
-                const s = syntheses.find((x) => x.id === l.smoobuId);
-                return (
-                  <tr key={l.id} className="border-b border-sauge/30">
-                    <td className="py-5 pr-4">
-                      <a href={urlLogement(l.id, lang)} className="lien inline-flex min-h-11 items-center font-display text-xl">
-                        {l.nom[lang]}
-                      </a>
-                      <span className="mt-1 block text-sm text-taupe">{l.surface} m²</span>
+              {LOGEMENTS.map((l) => (
+                <tr key={l.id} className="border-b border-sauge/30">
+                  <th scope="row" className="py-5 pr-4 text-left font-normal">
+                    <a
+                      href={urlLogement(l.id, lang)}
+                      className="lien inline-flex min-h-11 items-center font-display text-xl"
+                    >
+                      {l.nom[lang]}
+                    </a>
+                    <span className="mt-1 block text-sm text-taupe">
+                      {l.surface} m² · {l.capacite}{" "}
+                      {l.capacite > 1 ? UI.personnes[lang] : UI.personne[lang]}
+                    </span>
+                  </th>
+                  {TARIFS.saisons.map((saison) => (
+                    <td key={saison.id} className="py-5 pr-4">
+                      <span className="font-display text-2xl tabular-nums text-lie">
+                        {formatePrix(saison.prix[l.id], lang)}
+                      </span>
+                      <span className="mt-0.5 block text-sm text-taupe">
+                        {lang === "fr" ? "la nuit" : "per night"}
+                      </span>
                     </td>
-                    <td className="py-5 pr-4 text-base text-taupe">
-                      {l.capacite} {l.capacite > 1 ? UI.personnes[lang] : UI.personne[lang]}
-                    </td>
-                    <td className="py-5 pr-4 text-base text-taupe">
-                      {s?.nuitsMini
-                        ? `${s.nuitsMini} ${lang === "fr" ? "nuits" : "nights"}`
-                        : "—"}
-                    </td>
-                    <td className="py-5">
-                      {s?.prixMini ? (
-                        <span className="font-display text-2xl text-lie">
-                          {s.prixMini.toLocaleString(lang === "fr" ? "fr-FR" : "en-GB", {
-                            style: "currency",
-                            currency: s.devise,
-                            maximumFractionDigits: 0,
-                          })}
-                        </span>
-                      ) : (
-                        <span className="text-base text-taupe">
-                          {lang === "fr" ? "Sur demande" : "On request"}
-                        </span>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
+                  ))}
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
 
-        {!enLigne && (
-          <p className="mesure mt-8 text-base leading-relaxed text-taupe">
-            {lang === "fr" ? (
-              <>
-                L&apos;affichage automatique des tarifs est en cours de branchement. En attendant,
-                appelez-nous au{" "}
-                <LienTelephone depuis="tarifs" className="lien text-lie">
-                  {SITE.telephoneAffiche}
-                </LienTelephone>{" "}
-                ou écrivez à{" "}
-                <a href={`mailto:${SITE.email}`} className="lien text-lie">
-                  {SITE.email}
-                </a>{" "}
-                : nous répondons dans la journée.
-              </>
-            ) : (
-              <>
-                Automatic rate display is being connected. In the meantime, call us on{" "}
-                <LienTelephone depuis="tarifs" className="lien text-lie">
-                  {SITE.telephoneAffiche}
-                </LienTelephone>{" "}
-                or write to{" "}
-                <a href={`mailto:${SITE.email}`} className="lien text-lie">
-                  {SITE.email}
-                </a>{" "}
-                — we reply the same day.
-              </>
-            )}
-          </p>
-        )}
+        <p className="mesure mt-6 text-base leading-relaxed text-taupe">
+          {TARIFS.petitDejeuner.texte[lang]}{" "}
+          {lang === "fr"
+            ? "Deux nuits minimum. Taxe de séjour en supplément, 1,15 € par personne et par nuit."
+            : "Two nights minimum. Tourist tax extra, €1.15 per person per night."}
+        </p>
 
         <div className="mt-10 flex flex-wrap gap-3">
           <BoutonReserver lang={lang} />

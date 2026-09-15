@@ -2,6 +2,7 @@ import { SITE, adresseUneLigne, type Lang } from "@/lib/site";
 import { ROUTES, urlLogement, type LogementId } from "@/lib/routes";
 import { LOGEMENTS } from "@/content/logements";
 import { abs } from "@/lib/seo";
+import { TARIFS, prixMini, amplitude } from "@/content/tarifs";
 
 /** Rend un bloc JSON-LD. Un seul composant, pour ne pas éparpiller la sérialisation. */
 export function JsonLd({ data }: { data: object }) {
@@ -44,6 +45,8 @@ export function ficheEtablissement(lang: Lang) {
     hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(adresseUneLigne)}`,
     image: [abs("/images/facade-demeure-caux.jpg"), abs("/images/bains-japonais-onsen.jpg")],
     numberOfRooms: LOGEMENTS.length,
+    priceRange: `${amplitude().min}–${amplitude().max} €`,
+    currenciesAccepted: TARIFS.devise,
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: SITE.avis.note,
@@ -85,6 +88,21 @@ export function ficheLogement(id: LogementId, lang: Lang) {
       value: true,
     })),
     containedInPlace: { "@id": `${SITE.url}/#etablissement` },
+    // Le prix d'appel : ce qu'un agent conversationnel cite quand on lui
+    // demande « combien coûte une chambre d'hôtes près de Pézenas ».
+    offers: {
+      "@type": "Offer",
+      price: prixMini(id),
+      priceCurrency: TARIFS.devise,
+      availability: "https://schema.org/InStock",
+      url: abs(urlLogement(id, lang)),
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: prixMini(id),
+        priceCurrency: TARIFS.devise,
+        unitText: lang === "fr" ? "par nuit" : "per night",
+      },
+    },
   };
 }
 

@@ -117,6 +117,21 @@ Réservation possible jusqu'à ~4 h avant l'arrivée **et** blocage manuel le ma
 
 Le risque n'existe que si le blocage se fait ailleurs que dans Smoobu. S'il est fait dans Smoobu, il se propage immédiatement et aucune réservation ne peut passer. D'où une règle d'exploitation à acter avec Claudie, indépendante du site : **tout blocage passe par Smoobu, jamais par un planning parallèle.** La page `/controle` affiche les blocages du jour, ce qui rend la règle vérifiable au lieu d'être déclarative.
 
+### La grille tarifaire, en attendant Smoobu
+
+Les tarifs sont arrivés le 15/09/2026 (Jérôme et Claudie) avant l'ouverture du
+compte Smoobu. Ils vivent dans `src/content/tarifs.ts`, avec un statut explicite :
+**grille de référence**, pas source de vérité. Elle sert à deux choses —
+s'afficher tant que l'API n'est pas branchée (un prix juste vaut mieux qu'un
+« sur demande », qui fait fuir), et servir d'**attendus à `/controle`** pour
+repérer un paramétrage Smoobu manqué. Dès que l'API répond, c'est elle qui
+s'affiche ; on ne modifie plus un prix ici pour changer le site, on le change
+dans Smoobu et on reporte la décision dans le fichier.
+
+Grille : basse saison (sept.–avril) 90 / 105 / 165 €, moyenne (mai–juin)
+105 / 125 / 215 €, haute (juil.–août) 115 / 135 / 230 € pour La Lingerie,
+L'Écurie et Le Grenier. Petit-déjeuner 12 € par personne et par jour.
+
 ### Prix direct : ce qu'on peut afficher et ce qu'on ne peut pas
 
 Le prix direct sera inférieur au prix plateforme (≈ 17 % de commission économisée) et légèrement supérieur au net encaissé aujourd'hui. Il faut rendre l'avantage visible — mais il y a deux garde-fous :

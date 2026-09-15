@@ -2,6 +2,7 @@ import { SITE, adresseUneLigne } from "@/lib/site";
 import { ROUTES, urlLogement } from "@/lib/routes";
 import { LOGEMENTS } from "@/content/logements";
 import { abs } from "@/lib/seo";
+import { TARIFS, formatePrix } from "@/content/tarifs";
 
 /**
  * llms.txt — la fiche d'identité de la maison, lisible par un agent
@@ -55,6 +56,17 @@ ${logements}
 - Sète et le bassin de Thau : 45 km
 - Montpellier : 55 km
 - Gares les plus proches : Agde et Béziers. Aéroports : Béziers-Cap d'Agde, Montpellier-Méditerranée.
+
+## Tarifs par nuit
+
+${TARIFS.saisons
+  .map(
+    (saison) =>
+      `- **${saison.libelle.fr}** : La Lingerie ${formatePrix(saison.prix.lingerie, "fr")} · L'Écurie ${formatePrix(saison.prix.ecurie, "fr")} · Le Grenier ${formatePrix(saison.prix.grenier, "fr")}`,
+  )
+  .join("\n")}
+
+Petit-déjeuner en option : ${formatePrix(TARIFS.petitDejeuner.prix, "fr")} par personne et par jour. Taxe de séjour en supplément (voir ci-dessous).
 
 ## Conditions de séjour
 
