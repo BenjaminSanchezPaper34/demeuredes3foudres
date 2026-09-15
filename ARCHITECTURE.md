@@ -132,6 +132,19 @@ Grille : basse saison (sept.–avril) 90 / 105 / 165 €, moyenne (mai–juin)
 105 / 125 / 215 €, haute (juil.–août) 115 / 135 / 230 € pour La Lingerie,
 L'Écurie et Le Grenier. Petit-déjeuner 12 € par personne et par jour.
 
+### Pas de caution — arbitrage du 15/09/2026
+
+Claudie : « Nous n'avons jamais eu recours à la caution donc ce n'est pas
+nécessaire. » Décision prise, consignée dans `content/conditions.ts`.
+
+Le contexte technique, pour ne pas refaire l'analyse si la question revient :
+une empreinte bancaire Stripe **ne tient que 7 jours**, elle ne peut donc pas
+être prise à la réservation mais seulement dans la semaine qui précède
+l'arrivée. Smoobu ne sait pas la gérer — il peut encaisser une somme, pas la
+bloquer sans la débiter. Il faudrait un service tiers (Swikly, ~2 €/caution,
+ou ChargeAutomation). Si le besoin apparaît un jour, ce serait sur **Le
+Grenier** seul : 70 m², 4 personnes, cuisine, séjours longs.
+
 ### Prix direct : ce qu'on peut afficher et ce qu'on ne peut pas
 
 Le prix direct sera inférieur au prix plateforme (≈ 17 % de commission économisée) et légèrement supérieur au net encaissé aujourd'hui. Il faut rendre l'avantage visible — mais il y a deux garde-fous :

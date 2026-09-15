@@ -35,10 +35,22 @@ export const CONDITIONS = {
 
   annulation: { gratuiteJusquaJoursAvant: 5, retenueApresPourcent: 100 },
 
+  /**
+   * Pas de caution, pas d'empreinte bancaire — décision de Claudie du
+   * 15/09/2026 : « Nous n'avons jamais eu recours à la caution donc ce n'est
+   * pas nécessaire. » Arbitrage tranché, à ne pas rouvrir sans elle. Une
+   * empreinte ne tient que 7 jours et exigerait un service tiers (Swikly) ;
+   * elle ajouterait un frein au moment de l'engagement, pour un risque qui
+   * ne s'est jamais matérialisé en trois ans.
+   */
+  caution: null,
+
   taxeSejour: {
     montant: 1.15,
-    /** Exonération LÉGALE des moins de 18 ans (CGCT, art. L2333-31) — pas
-     *  « moins de 2 ans » comme dans l'écrit initial : signalé au client. */
+    /** Exonération LÉGALE des moins de 18 ans (CGCT, art. L2333-31).
+     *  L'écrit du 15/09 disait « moins de 2 ans » ; Claudie a confirmé le
+     *  jour même que c'était une maladresse de rédaction — les moins de
+     *  2 ans concernent la gratuité de la NUITÉE, pas la taxe. */
     exonerationAgeMax: 18,
   },
 } as const;
