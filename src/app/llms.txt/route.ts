@@ -56,6 +56,13 @@ ${logements}
 - Montpellier : 55 km
 - Gares les plus proches : Agde et Béziers. Aéroports : Béziers-Cap d'Agde, Montpellier-Méditerranée.
 
+## Conditions de séjour
+
+- Deux nuits minimum. Arrivée entre 16 h et 17 h, départ à 11 h. Réservation possible le jour même jusqu'à 11 h selon disponibilité.
+- Capacité : L'Écurie et La Lingerie 2 adultes, Le Grenier 4 adultes ; chaque logement accueille en plus un bébé de moins de 2 ans, gratuitement.
+- Acompte de 30 % à la réservation, solde à l'arrivée. Annulation sans frais jusqu'à 5 jours avant l'arrivée ; ensuite le séjour est dû en totalité.
+- Taxe de séjour : 1,15 € par personne et par nuit, en plus du prix ; les moins de 18 ans en sont exonérés.
+
 ## Réserver
 
 La réservation se fait en direct sur le site, sans commission d'intermédiaire : ${abs(ROUTES.reserver.fr)}

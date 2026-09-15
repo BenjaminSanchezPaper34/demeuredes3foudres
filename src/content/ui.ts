@@ -35,6 +35,7 @@ export const UI = {
   ecrire: { fr: "Écrire", en: "Email us" },
   itineraire: { fr: "Itinéraire", en: "Directions" },
   personnes: { fr: "personnes", en: "guests" },
+  bebeGratuit: { fr: "+ 1 bébé de moins de 2 ans, gratuit", en: "+ 1 infant under 2, free" },
   personne: { fr: "personne", en: "guest" },
   chambre: { fr: "chambre", en: "bedroom" },
   chambresPluriel: { fr: "chambres", en: "bedrooms" },

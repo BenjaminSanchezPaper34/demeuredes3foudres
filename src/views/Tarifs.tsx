@@ -11,6 +11,8 @@ import { PrixDirect } from "@/components/Reassurance";
 import { LienTelephone } from "@/components/Traces";
 import { JsonLd, faq, filAriane } from "@/components/JsonLd";
 import { smoobuConfigure, lireTarifs, synthetiser, jour } from "@/lib/smoobu";
+import { CONDITIONS_TEXTES, CONDITIONS_FAQ } from "@/content/conditions";
+import { Icone } from "@/components/Icone";
 
 /**
  * Tarifs.
@@ -48,6 +50,7 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
             q: "Le petit-déjeuner est-il inclus ?",
             r: "Le petit-déjeuner est servi dans notre salle dédiée. Pour l'appartement Le Grenier, qui dispose d'une cuisine équipée, il est proposé avec supplément.",
           },
+          ...CONDITIONS_FAQ.map((x) => ({ q: x.q.fr, r: x.r.fr })),
         ]
       : [
           {
@@ -64,6 +67,7 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
             q: "Is breakfast included?",
             r: "Breakfast is served in our dedicated room. For the Attic apartment, which has a fitted kitchen, it is available for a supplement.",
           },
+          ...CONDITIONS_FAQ.map((x) => ({ q: x.q.en, r: x.r.en })),
         ];
 
   return (
@@ -221,6 +225,24 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
           <Bouton href={route("chambres", lang)} variante="ligne">
             {UI.tousLesLogements[lang]}
           </Bouton>
+        </div>
+      </Section>
+
+      {/* Conditions : elles se publient (source Claudie, 15/09/2026). Immobiles,
+          comme tout ce que le visiteur doit croire. Les prix, eux, viennent de l'API. */}
+      <Section>
+        <Kicker>{lang === "fr" ? "Conditions de séjour" : "Terms of stay"}</Kicker>
+        <Titre className="mb-10">{lang === "fr" ? "Ce qui est convenu" : "What applies"}</Titre>
+        <div className="grid gap-8 md:grid-cols-2 md:gap-10">
+          {CONDITIONS_TEXTES.map((c) => (
+            <article key={c.icone} className="flex gap-4">
+              <Icone nom={c.icone} taille={24} className="mt-1 text-sauge" />
+              <div>
+                <h3 className="font-display text-xl">{c.titre[lang]}</h3>
+                <p className="mesure mt-2 text-base leading-relaxed text-taupe">{c.texte[lang]}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </Section>
 

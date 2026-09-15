@@ -104,7 +104,7 @@ Authentification : **HMAC** (`X-API-Key` / `X-Timestamp` / `X-Nonce` / `X-Signat
 Une page protégée et `noindex`, qui lit l'API et affiche, en clair :
 
 - les règles réellement appliquées par Smoobu aujourd'hui, logement par logement ;
-- **la comparaison avec les règles convenues** (2 nuits minimum, départ 11 h, arrivée 16 h – 17 h, réservation jusqu'à ~4 h avant l'arrivée, pas de délai entre deux séjours), avec un signalement visible dès qu'un écart apparaît ;
+- **la comparaison avec les règles convenues** — écrit de Claudie du 15/09/2026, dans `src/content/conditions.ts` : 2 nuits minimum, départ 11 h, arrivée 16 h – 17 h, réservation le jour même jusqu'à 11 h, acompte 30 %, annulation sans frais jusqu'à 5 jours avant, pas de délai entre deux séjours — avec un signalement visible dès qu'un écart apparaît ;
 - les blocages en cours et les réservations à venir sur 30 jours.
 
 Claudie n'est pas contre les channel managers, elle est échaudée par des paramétrages non respectés et des doubles réservations. On ne la convaincra pas par un argumentaire : on lui donne un écran où elle vérifie en dix secondes que l'outil fait ce qu'on lui a dit de faire. Coût : une page qui lit une API. Bénéfice : la personne qui tient les réservations cesse de travailler à l'aveugle.

@@ -67,7 +67,8 @@ export default function Logement({ id, lang }: { id: LogementId; lang: Lang }) {
                 </li>
               ))}
             </ul>
-            <div className="mt-8">
+            <p className="mt-5 text-sm text-taupe">{UI.bebeGratuit[lang]}</p>
+            <div className="mt-6">
               <BoutonReserver lang={lang} smoobuId={l.smoobuId} fleche />
             </div>
           </aside>
