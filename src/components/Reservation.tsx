@@ -143,9 +143,11 @@ function MoteurSmoobu({ lang, logement }: { lang: Lang; logement: number | null 
   useEffect(() => {
     if (!ID_IFRAME || !cible.current) return;
 
+    // Format relevé dans Smoobu (Intégrer dans le site, 01/10/2026) :
+    // …/iframe/<id moteur> pour tous les logements, …/iframe/<id moteur>/<id logement> pour un seul.
     const url =
       `${BASE_SMOOBU}/${lang}/booking-tool/iframe/${ID_IFRAME}` +
-      (logement ? `?apartmentGroups[]=${logement}` : "");
+      (logement ? `/${logement}` : "");
 
     const demarrer = () => {
       try {

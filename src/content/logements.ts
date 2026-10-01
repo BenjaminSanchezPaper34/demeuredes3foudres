@@ -82,7 +82,7 @@ export const LOGEMENTS: Logement[] = [
       { src: "/images/ecurie-11.jpg", alt: { fr: "Détail de décoration, chambre Écurie", en: "Decorative detail, the Stable" } },
       { src: "/images/ecurie-12.jpg", alt: { fr: "Chambre Écurie de la Demeure des Trois Foudres à Caux", en: "The Stable at Demeure des Trois Foudres in Caux" } },
     ],
-    smoobuId: null,
+    smoobuId: 3536391,
   },
   {
     id: "lingerie",
@@ -125,7 +125,7 @@ export const LOGEMENTS: Logement[] = [
       { src: "/images/lingerie-07.jpg", alt: { fr: "Mobilier chiné de la chambre Lingerie", en: "Antique furniture in the Linen Room" } },
       { src: "/images/lingerie-08.jpg", alt: { fr: "Chambre Lingerie de la Demeure des Trois Foudres à Caux", en: "The Linen Room at Demeure des Trois Foudres in Caux" } },
     ],
-    smoobuId: null,
+    smoobuId: 3536396,
   },
   {
     id: "grenier",
@@ -176,7 +176,7 @@ export const LOGEMENTS: Logement[] = [
       { src: "/images/grenier-13.jpg", alt: { fr: "Espace extérieur de l'appartement Le Grenier", en: "Outdoor space of the Attic apartment" } },
       { src: "/images/grenier-14.jpg", alt: { fr: "Appartement Le Grenier à Caux, près de Pézenas", en: "The Attic apartment in Caux, near Pézenas" } },
     ],
-    smoobuId: null,
+    smoobuId: 3536401,
   },
 ];
 
