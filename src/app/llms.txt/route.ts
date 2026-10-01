@@ -72,6 +72,7 @@ Petit-déjeuner en option : ${formatePrix(TARIFS.petitDejeuner.prix, "fr")} par 
 
 - Deux nuits minimum. Arrivée entre 16 h et 17 h, départ à 11 h. Réservation possible le jour même jusqu'à 11 h selon disponibilité.
 - Capacité : L'Écurie et La Lingerie 2 adultes, Le Grenier 4 adultes ; chaque logement accueille en plus un bébé de moins de 2 ans, gratuitement.
+- Prix par logement, le même pour une ou deux personnes. Animaux acceptés sans supplément. Logements non-fumeurs (fumer à l'extérieur).
 - Acompte de 30 % à la réservation, solde à l'arrivée. Annulation sans frais jusqu'à 5 jours avant l'arrivée ; ensuite le séjour est dû en totalité.
 - Taxe de séjour : 1,15 € par personne et par nuit, en plus du prix ; les moins de 18 ans en sont exonérés.
 

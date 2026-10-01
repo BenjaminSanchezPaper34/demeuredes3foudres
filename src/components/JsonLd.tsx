@@ -47,6 +47,7 @@ export function ficheEtablissement(lang: Lang) {
     numberOfRooms: LOGEMENTS.length,
     priceRange: `${amplitude().min}–${amplitude().max} €`,
     currenciesAccepted: TARIFS.devise,
+    petsAllowed: true,
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: SITE.avis.note,

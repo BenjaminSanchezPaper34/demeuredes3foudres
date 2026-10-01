@@ -45,6 +45,15 @@ export const CONDITIONS = {
    */
   caution: null,
 
+  /** Réponses de Claudie du 01/10/2026. */
+  animaux: { admis: true, supplement: 0 },
+  /** Fumer : autorisé à l'extérieur uniquement. */
+  fumeur: "exterieur" as const,
+  /** Le prix est celui du logement, quel que soit le nombre d'occupants. */
+  prixParLogement: true,
+  /** Petit-déjeuner jamais inclus : en option, 12 € / pers. / jour (content/tarifs.ts). */
+  petitDejeunerInclus: false,
+
   taxeSejour: {
     montant: 1.15,
     /** Exonération LÉGALE des moins de 18 ans (CGCT, art. L2333-31).
@@ -69,8 +78,8 @@ export const CONDITIONS_TEXTES: { icone: "calendrier" | "personnes" | "coche" | 
     icone: "personnes",
     titre: { fr: "Capacité", en: "Capacity" },
     texte: {
-      fr: "L'Écurie et La Lingerie accueillent 2 adultes, Le Grenier 4 adultes. Chaque logement peut recevoir en plus un bébé de moins de 2 ans, gratuitement.",
-      en: "The Stable and the Linen Room sleep 2 adults, the Attic 4 adults. Each place can also take one infant under 2, free of charge.",
+      fr: "L'Écurie et La Lingerie accueillent 2 adultes, Le Grenier 4 adultes. Chaque logement peut recevoir en plus un bébé de moins de 2 ans, gratuitement. Le prix est celui du logement : le même pour une personne ou pour deux.",
+      en: "The Stable and the Linen Room sleep 2 adults, the Attic 4 adults. Each place can also take one infant under 2, free of charge. The price is per place to stay: the same for one guest or two.",
     },
   },
   {
@@ -87,6 +96,14 @@ export const CONDITIONS_TEXTES: { icone: "calendrier" | "personnes" | "coche" | 
     texte: {
       fr: "1,15 € par personne et par nuit, en plus du prix du séjour, reversée à la commune. Les personnes de moins de 18 ans en sont exonérées.",
       en: "€1.15 per person per night, on top of the price of the stay, passed on to the town. Under-18s are exempt.",
+    },
+  },
+  {
+    icone: "coche",
+    titre: { fr: "Animaux et tabac", en: "Pets and smoking" },
+    texte: {
+      fr: "Les animaux sont les bienvenus, sans supplément. On fume à l'extérieur uniquement : les logements sont non-fumeurs.",
+      en: "Pets are welcome at no extra charge. Smoking outdoors only: the rooms are non-smoking.",
     },
   },
 ];
@@ -119,6 +136,27 @@ export const CONDITIONS_FAQ: { q: T; r: T }[] = [
     r: {
       fr: "1,15 € par personne et par nuit, en plus du prix du séjour. Les moins de 18 ans en sont exonérés.",
       en: "€1.15 per person per night, on top of the price of the stay. Under-18s are exempt.",
+    },
+  },
+  {
+    q: { fr: "Les animaux sont-ils acceptés ?", en: "Are pets allowed?" },
+    r: {
+      fr: "Oui, les animaux sont les bienvenus, sans supplément.",
+      en: "Yes, pets are welcome at no extra charge.",
+    },
+  },
+  {
+    q: { fr: "Peut-on fumer ?", en: "Is smoking allowed?" },
+    r: {
+      fr: "À l'extérieur uniquement : les logements sont non-fumeurs.",
+      en: "Outdoors only: the rooms are non-smoking.",
+    },
+  },
+  {
+    q: { fr: "Le tarif est-il le même pour une personne seule ?", en: "Is the price the same for one guest?" },
+    r: {
+      fr: "Oui, le prix est celui du logement : le même pour une ou deux personnes.",
+      en: "Yes, the price is per place to stay: the same for one guest or two.",
     },
   },
 ];

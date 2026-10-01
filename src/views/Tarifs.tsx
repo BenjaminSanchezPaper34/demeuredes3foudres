@@ -48,7 +48,7 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
           },
           {
             q: "Le petit-déjeuner est-il inclus ?",
-            r: "Le petit-déjeuner est servi dans notre salle dédiée. Pour l'appartement Le Grenier, qui dispose d'une cuisine équipée, il est proposé avec supplément.",
+            r: `Non, il est en option dans les trois logements : ${formatePrix(TARIFS.petitDejeuner.prix, "fr")} par personne et par jour, servi dans notre salle des petits-déjeuners.`,
           },
           ...CONDITIONS_FAQ.map((x) => ({ q: x.q.fr, r: x.r.fr })),
         ]
@@ -63,7 +63,7 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
           },
           {
             q: "Is breakfast included?",
-            r: "Breakfast is served in our dedicated room. For the Attic apartment, which has a fitted kitchen, it is available for a supplement.",
+            r: `No, it is optional in all three places: ${formatePrix(TARIFS.petitDejeuner.prix, "en")} per person per day, served in our breakfast room.`,
           },
           ...CONDITIONS_FAQ.map((x) => ({ q: x.q.en, r: x.r.en })),
         ];
@@ -104,12 +104,12 @@ export default async function Tarifs({ lang }: { lang: Lang }) {
             lang === "fr"
               ? [
                   "Trois logements : deux chambres pour 2 personnes et un appartement pour 4.",
-                  `À partir de ${formatePrix(prixMini("lingerie"), "fr")} la nuit pour deux, petit-déjeuner en option à ${formatePrix(TARIFS.petitDejeuner.prix, "fr")} par personne.`,
+                  `À partir de ${formatePrix(prixMini("lingerie"), "fr")} la nuit pour une ou deux personnes, petit-déjeuner en option à ${formatePrix(TARIFS.petitDejeuner.prix, "fr")} par personne.`,
                   "Réservation en direct : pas de commission d'intermédiaire.",
                 ]
               : [
                   "Three places to stay: two rooms for 2 guests and an apartment for 4.",
-                  `From ${formatePrix(prixMini("lingerie"), "en")} a night for two, breakfast optional at ${formatePrix(TARIFS.petitDejeuner.prix, "en")} per person.`,
+                  `From ${formatePrix(prixMini("lingerie"), "en")} a night for one or two guests, breakfast optional at ${formatePrix(TARIFS.petitDejeuner.prix, "en")} per person.`,
                   "Book direct: no platform commission.",
                 ]
           }
