@@ -168,7 +168,7 @@ function MoteurSmoobu({ lang, logement }: { lang: Lang; logement: number | null 
     }
 
     const script = document.createElement("script");
-    script.src = `${BASE_SMOOBU}/js/Integration/BookingToolIframe.js`;
+    script.src = `${BASE_SMOOBU}/js/Settings/BookingToolIframe.js`;
     script.async = true;
     script.onload = demarrer;
     script.onerror = () => setEtat("erreur");
