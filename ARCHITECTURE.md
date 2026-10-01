@@ -35,7 +35,7 @@ Ce qui est bon et se garde : les textes de présentation de la demeure et des 3 
 | Images | `next/image`, AVIF + WebP, srcset | Nécessite les originaux |
 | Hébergement | Vercel, domaine du client rattaché | |
 | Réservation | iframe Smoobu **pour l'acte d'achat** + API Smoobu **pour tout ce qui s'affiche** | Voir §4 |
-| Formulaire | route handler Next + Resend → `contact@demeuredestroisfoudres.fr` | Une clé API, pas de service externe à administrer |
+| Formulaire | route handler Next + Resend → `dd3foudres@gmail.com` | Une clé API, pas de service externe à administrer |
 | Mesure | Vercel Web Analytics + événements maison | Sans cookie, exempté de consentement |
 
 Écarté : CMS headless (Sanity, Strapi), Wordpress, base de données. Aucun n'a d'utilisateur ici et chacun ajoute un compte, un coût et une surface de panne sur un forfait de maintenance à 250 €/mois.

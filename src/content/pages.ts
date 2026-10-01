@@ -381,8 +381,8 @@ export const CONTACT = {
       en: "Thank you, your message has been sent. We will get back to you shortly.",
     },
     erreur: {
-      fr: "L'envoi a échoué. Écrivez-nous directement à contact@demeuredestroisfoudres.fr ou appelez le 07 77 23 46 80.",
-      en: "Sending failed. Please email contact@demeuredestroisfoudres.fr or call +33 7 77 23 46 80.",
+      fr: "L'envoi a échoué. Écrivez-nous directement à dd3foudres@gmail.com ou appelez le 07 77 23 46 80.",
+      en: "Sending failed. Please email dd3foudres@gmail.com or call +33 7 77 23 46 80.",
     },
   },
   sujets: {

@@ -22,7 +22,7 @@ export const SITE = {
   geo: { lat: 43.4869, lng: 3.3486 },
   telephone: "+33777234680",
   telephoneAffiche: "07 77 23 46 80",
-  email: "contact@demeuredestroisfoudres.fr",
+  email: "dd3foudres@gmail.com",
   reseaux: {
     instagram: "https://www.instagram.com/demeuredestroisfoudres/",
     facebook: "https://www.facebook.com/profile.php?id=100086142445640",
