@@ -19,7 +19,7 @@ export const CONDITIONS = {
   sejourMinimumNuits: 2,
   /** Réservation possible le jour même jusqu'à cette heure (heure de Paris). */
   reservationJourMemeJusqua: "11:00",
-  arrivee: { de: "16:00", a: "17:00" },
+  arrivee: { de: "17:00", a: "20:00" }, // Claudie 02/10/2026 : à partir de 17 h, repère 20 h, plus tard sur demande
   depart: "11:00",
 
   capacites: {
@@ -70,8 +70,8 @@ export const CONDITIONS_TEXTES: { icone: "calendrier" | "personnes" | "coche" | 
     icone: "calendrier",
     titre: { fr: "Durée et horaires", en: "Length of stay and times" },
     texte: {
-      fr: "Deux nuits minimum pour tous les logements. Arrivée entre 16 h et 17 h, départ à 11 h. Réservation possible le jour même jusqu'à 11 h, selon disponibilité.",
-      en: "Two nights minimum for every place to stay. Check-in between 4 pm and 5 pm, check-out at 11 am. Same-day booking possible until 11 am, subject to availability.",
+      fr: "Deux nuits minimum pour tous les logements. Arrivée à partir de 17 h, jusqu'à 20 h (plus tard sur demande), départ à 11 h. Réservation possible le jour même jusqu'à 11 h, selon disponibilité.",
+      en: "Two nights minimum for every place to stay. Check-in from 5 pm until 8 pm (later on request), check-out at 11 am. Same-day booking possible until 11 am, subject to availability.",
     },
   },
   {
