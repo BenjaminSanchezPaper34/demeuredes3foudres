@@ -37,14 +37,14 @@ export const ACCUEIL = {
     en: "A beautiful house, a wine hall holding three magnificent tuns — love at first sight. A garden, a stately courtyard, a pool for summer and Japanese baths for winter, comfortable, original rooms… Come and meet us. We'll be waiting for you.",
   } as T,
   hotes: {
-    kicker: { fr: "L'accueil", en: "Welcome" },
-    nom: { fr: "Une maison habitée", en: "A house that is lived in" },
+    kicker: { fr: "L'histoire", en: "The story" },
+    nom: { fr: "Agnès et Jérôme", en: "Agnès and Jérôme" },
     texte: {
-      fr: "La demeure a été restaurée pendant plus d'un an, et elle est habitée : vous êtes accueillis en personne — et par les mascottes aussi.",
-      en: "The house was restored over more than a year, and it is lived in: you are welcomed in person — and by the mascots too.",
+      fr: "Agnès et Jérôme ont restauré cette demeure pendant plus d'un an. Elle est toujours habitée : vous y êtes accueillis en personne — et par les mascottes aussi.",
+      en: "Agnès and Jérôme spent more than a year restoring this house. It is still lived in: you are welcomed in person — and by the mascots too.",
     },
     mascottes: { fr: "Les mascottes de la maison", en: "The house mascots" },
-    altJardin: { fr: "Le jardin, ses oliviers et le couloir de nage", en: "The garden, its olive trees and the swimming lane" },
+    altCouple: { fr: "Agnès et Jérôme, qui ont restauré la demeure", en: "Agnès and Jérôme, who restored the house" },
     altMascottes: { fr: "Les deux chiens de la maison", en: "The house's two dogs" },
   },
   introTitre: {

@@ -50,7 +50,7 @@ export default function Accueil({ lang }: { lang: Lang }) {
         }
       />
 
-      {/* Sous la vidéo : leurs mots, puis la maison habitée. Pas de prénoms d'hôtes ici. */}
+      {/* Sous la vidéo : leurs mots, puis leur histoire — au passé, jamais « vous accueillent ». */}
       <Section>
         <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-center md:gap-16">
           <div>
@@ -66,8 +66,8 @@ export default function Accueil({ lang }: { lang: Lang }) {
           <div className="grid gap-3" data-reveal="stagger">
             <div className="relative aspect-[7/4] overflow-hidden bg-chaux">
               <Image
-                src="/images/couloir-de-nage-transats.jpg"
-                alt={ACCUEIL.hotes.altJardin[lang]}
+                src="/images/agnes-et-jerome.jpg"
+                alt={ACCUEIL.hotes.altCouple[lang]}
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"
                 className="object-cover"
